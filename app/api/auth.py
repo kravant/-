@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 
 from app.config import settings
-from app.db.models import User, Rating
+from app.db.models import Rating, User
 from app.db.session import async_session_maker
 
 
@@ -23,7 +23,6 @@ class TelegramAuthRequest(BaseModel):
 
 
 def validate_telegram_init_data(init_data: str) -> dict:
-
     data = dict(
         parse_qsl(
             init_data,
@@ -37,7 +36,6 @@ def validate_telegram_init_data(init_data: str) -> dict:
     )
 
     if not received_hash:
-
         raise HTTPException(
             status_code=401,
             detail="Telegram hash отсутствует",
@@ -66,7 +64,6 @@ def validate_telegram_init_data(init_data: str) -> dict:
         calculated_hash,
         received_hash,
     ):
-
         raise HTTPException(
             status_code=401,
             detail="Неверные данные Telegram",
@@ -79,13 +76,11 @@ def validate_telegram_init_data(init_data: str) -> dict:
 async def telegram_auth(
     auth_data: TelegramAuthRequest,
 ):
-
     data = validate_telegram_init_data(
         auth_data.init_data
     )
 
     if "user" not in data:
-
         raise HTTPException(
             status_code=401,
             detail="Данные пользователя Telegram отсутствуют",
@@ -108,7 +103,6 @@ async def telegram_auth(
         user = result.scalar_one_or_none()
 
         if not user:
-
             user = User(
                 telegram_id=telegram_id,
                 username=telegram_user.get("username"),
@@ -119,9 +113,25 @@ async def telegram_auth(
             db.add(user)
 
             await db.commit()
-
             await db.refresh(user)
 
+        else:
+            user.username = telegram_user.get("username")
+            user.first_name = telegram_user.get("first_name")
+            user.last_name = telegram_user.get("last_name")
+
+            await db.commit()
+
+        # Создаём рейтинг игрока, если его ещё нет
+        rating_result = await db.execute(
+            select(Rating).where(
+                Rating.user_id == user.id
+            )
+        )
+
+        rating = rating_result.scalar_one_or_none()
+
+        if not rating:
             rating = Rating(
                 user_id=user.id,
                 rating=0,
@@ -129,24 +139,7 @@ async def telegram_auth(
             )
 
             db.add(rating)
-
             await db.commit()
-        else:
-
-            user.username = telegram_user.get(
-                "username"
-            )
-
-            user.first_name = telegram_user.get(
-                "first_name"
-            )
-
-            user.last_name = telegram_user.get(
-                "last_name"
-            )
-
-            await db.commit()
-
 
     return {
         "user_id": user.id,
