@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+alembic
+psycopg2-binary
+pydantic
+pydantic-settings
+aiogram
+aiohttp
+redis
+python-socketio
+python-jose
