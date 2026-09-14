@@ -15,17 +15,20 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+
 target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
-    url = settings.database_url
+    url = settings.async_database_url
 
     context.configure(
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
-        dialect_opts={"paramstyle": "named"},
+        dialect_opts={
+            "paramstyle": "named",
+        },
     )
 
     with context.begin_transaction():
@@ -45,14 +48,16 @@ def do_run_migrations(connection) -> None:
 async def run_migrations_online() -> None:
     connectable = async_engine_from_config(
         {
-            "sqlalchemy.url": settings.database_url,
+            "sqlalchemy.url": settings.async_database_url,
         },
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
 
     async with connectable.connect() as connection:
-        await connection.run_sync(do_run_migrations)
+        await connection.run_sync(
+            do_run_migrations
+        )
 
     await connectable.dispose()
 
@@ -60,6 +65,13 @@ async def run_migrations_online() -> None:
 if context.is_offline_mode():
     run_migrations_offline()
 else:
-    import asyncio
+    connection = config.attributes.get("connection")
 
-    asyncio.run(run_migrations_online())
+    if connection is not None:
+        do_run_migrations(connection)
+    else:
+        import asyncio
+
+        asyncio.run(
+            run_migrations_online()
+        )
