@@ -20,7 +20,7 @@
         }
 
         body {
-            background: #0a0a0a;
+            background: #090909;
         }
 
         button {
@@ -38,12 +38,16 @@
 <body class="text-white min-h-screen">
 
 
+<!-- =====================================================
+     ОСНОВНОЙ КОНТЕЙНЕР
+===================================================== -->
+
 <div class="max-w-md mx-auto px-5 pt-6 pb-28">
 
 
-    <!-- =========================
-         ГЛАВНЫЙ ЭКРАН
-    ========================== -->
+    <!-- =================================================
+         ГЛАВНАЯ
+    ================================================== -->
 
     <div id="homeScreen">
 
@@ -61,7 +65,7 @@
                     Добро пожаловать
                 </p>
 
-                <h1 class="text-2xl font-bold tracking-tight">
+                <h1 class="text-2xl font-bold">
                     Poker Club
                 </h1>
 
@@ -70,7 +74,7 @@
 
             <div
                 id="avatar"
-                class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center overflow-hidden"
+                class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl overflow-hidden"
             >
                 ♠
             </div>
@@ -78,30 +82,19 @@
         </div>
 
 
-        <!-- СТАТУС -->
-
-        <div
-            id="authStatus"
-            class="hidden"
-        >
-        </div>
-
-
-        <!-- =========================
-             БЛИЖАЙШАЯ ИГРА
-        ========================== -->
+        <!-- БЛИЖАЙШАЯ ИГРА -->
 
         <section class="mb-5">
 
             <div class="flex justify-between items-center mb-3">
 
-                <p class="text-gray-500 text-sm uppercase tracking-wider">
+                <p class="text-gray-500 text-xs uppercase tracking-wider">
                     Ближайшая игра
                 </p>
 
                 <button
-                    onclick="showGames()"
-                    class="text-sm text-gray-400"
+                    onclick="showScreen('games')"
+                    class="text-gray-400 text-sm"
                 >
                     Все игры →
                 </button>
@@ -114,30 +107,27 @@
                 class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5"
             >
 
-                <div class="flex justify-between items-start mb-5">
+                <p
+                    id="nextGameDate"
+                    class="text-gray-500 text-sm"
+                >
+                    —
+                </p>
 
-                    <div>
 
-                        <p
-                            id="nextGameDate"
-                            class="text-gray-400 text-sm"
-                        >
-                            —
-                        </p>
+                <div class="flex justify-between items-start mt-1">
 
-                        <h2
-                            id="nextGameTitle"
-                            class="text-xl font-semibold mt-1"
-                        >
-                            Загрузка...
-                        </h2>
-
-                    </div>
+                    <h2
+                        id="nextGameTitle"
+                        class="text-xl font-semibold"
+                    >
+                        Пока игр нет
+                    </h2>
 
 
                     <div
                         id="nextGameType"
-                        class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300"
+                        class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300 ml-3"
                     >
                         —
                     </div>
@@ -145,18 +135,18 @@
                 </div>
 
 
-                <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="grid grid-cols-2 gap-3 mt-5">
 
 
                     <div class="bg-zinc-800/60 rounded-2xl p-3">
 
-                        <p class="text-gray-500 text-xs mb-1">
+                        <p class="text-gray-500 text-xs">
                             Время
                         </p>
 
                         <p
                             id="nextGameTime"
-                            class="font-medium"
+                            class="font-medium mt-1"
                         >
                             —
                         </p>
@@ -166,13 +156,13 @@
 
                     <div class="bg-zinc-800/60 rounded-2xl p-3">
 
-                        <p class="text-gray-500 text-xs mb-1">
+                        <p class="text-gray-500 text-xs">
                             Игроки
                         </p>
 
                         <p
                             id="nextGamePlayers"
-                            class="font-medium"
+                            class="font-medium mt-1"
                         >
                             —
                         </p>
@@ -183,10 +173,10 @@
 
 
                 <button
-                    onclick="showGames()"
-                    class="w-full bg-white text-black rounded-2xl py-3.5 font-semibold"
+                    onclick="showScreen('games')"
+                    class="w-full mt-4 bg-white text-black rounded-2xl py-3.5 font-semibold"
                 >
-                    Посмотреть игру
+                    Посмотреть игры
                 </button>
 
             </div>
@@ -194,9 +184,7 @@
         </section>
 
 
-        <!-- =========================
-             МОЙ РЕЙТИНГ
-        ========================== -->
+        <!-- МОЙ РЕЙТИНГ -->
 
         <section class="mb-5">
 
@@ -206,15 +194,15 @@
 
                     <div>
 
-                        <p class="text-gray-500 text-sm mb-2">
+                        <p class="text-gray-500 text-sm">
                             Мой рейтинг
                         </p>
 
-                        <div class="flex items-baseline gap-2">
+                        <div class="flex items-baseline gap-2 mt-1">
 
                             <span
                                 id="myRating"
-                                class="text-5xl font-bold tracking-tight"
+                                class="text-5xl font-bold"
                             >
                                 0
                             </span>
@@ -238,7 +226,7 @@
                 </div>
 
 
-                <div class="mt-5 pt-4 border-t border-zinc-800">
+                <div class="border-t border-zinc-800 mt-5 pt-4">
 
                     <p
                         id="myGames"
@@ -254,13 +242,11 @@
         </section>
 
 
-        <!-- =========================
-             БЫСТРЫЕ ДЕЙСТВИЯ
-        ========================== -->
+        <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
 
         <section>
 
-            <p class="text-gray-500 text-sm uppercase tracking-wider mb-3">
+            <p class="text-gray-500 text-xs uppercase tracking-wider mb-3">
                 Быстрый доступ
             </p>
 
@@ -269,7 +255,7 @@
 
 
                 <button
-                    onclick="showGames()"
+                    onclick="showScreen('games')"
                     class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-left"
                 >
 
@@ -311,13 +297,12 @@
 
         </section>
 
-
     </div>
 
 
-    <!-- =========================
-         ЭКРАН ИГР
-    ========================== -->
+    <!-- =================================================
+         ИГРЫ
+    ================================================== -->
 
     <div
         id="gamesScreen"
@@ -344,23 +329,14 @@
             id="gamesList"
             class="space-y-3"
         >
-
-            <div class="bg-zinc-900 rounded-3xl p-5 text-center">
-
-                <p class="text-gray-500">
-                    Загрузка игр...
-                </p>
-
-            </div>
-
         </div>
 
     </div>
 
 
-    <!-- =========================
-         ЭКРАН РЕЙТИНГА
-    ========================== -->
+    <!-- =================================================
+         РЕЙТИНГ
+    ================================================== -->
 
     <div
         id="ratingScreen"
@@ -392,9 +368,9 @@
     </div>
 
 
-    <!-- =========================
+    <!-- =================================================
          ПРОФИЛЬ
-    ========================== -->
+    ================================================== -->
 
     <div
         id="profileScreen"
@@ -418,6 +394,7 @@
 
 
         <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 text-center">
+
 
             <div
                 id="profileAvatar"
@@ -487,13 +464,13 @@
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      НИЖНЯЯ НАВИГАЦИЯ
-========================== -->
+===================================================== -->
 
 <div
     id="navigation"
-    class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur border-t border-zinc-800"
+    class="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur border-t border-zinc-800"
 >
 
     <div class="max-w-md mx-auto grid grid-cols-3 px-5 py-3">
@@ -546,7 +523,6 @@
 
         </button>
 
-
     </div>
 
 </div>
@@ -554,19 +530,20 @@
 
 <script>
 
-
-/* =========================
-   TELEGRAM
-========================= */
+/* =====================================================
+   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+===================================================== */
 
 let tg = null;
+
 let currentUserId = null;
+
 let currentTelegramUser = null;
 
 
-/* =========================
-   TELEGRAM SDK
-========================= */
+/* =====================================================
+   TELEGRAM
+===================================================== */
 
 function initTelegram() {
 
@@ -585,8 +562,8 @@ function initTelegram() {
 
     tg = window.Telegram.WebApp;
 
-
     tg.ready();
+
     tg.expand();
 
 
@@ -594,9 +571,9 @@ function initTelegram() {
 }
 
 
-/* =========================
+/* =====================================================
    АВТОРИЗАЦИЯ
-========================= */
+===================================================== */
 
 async function authorizeUser() {
 
@@ -607,8 +584,7 @@ async function authorizeUser() {
 
     try {
 
-        const initData =
-            tg.initData;
+        const initData = tg.initData;
 
 
         if (!initData) {
@@ -621,24 +597,22 @@ async function authorizeUser() {
         }
 
 
-        const response =
-            await fetch(
-                window.location.origin +
-                "/auth/telegram",
-                {
-                    method: "POST",
+        const response = await fetch(
+            window.location.origin +
+            "/auth/telegram",
+            {
+                method: "POST",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
 
-                    body: JSON.stringify({
-                        init_data:
-                            initData
-                    })
-                }
-            );
+                body: JSON.stringify({
+                    init_data: initData
+                })
+            }
+        );
 
 
         if (!response.ok) {
@@ -673,6 +647,7 @@ async function authorizeUser() {
 
         return true;
 
+
     } catch (error) {
 
         console.error(
@@ -685,9 +660,9 @@ async function authorizeUser() {
 }
 
 
-/* =========================
+/* =====================================================
    ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
-========================= */
+===================================================== */
 
 function updateUserInterface() {
 
@@ -719,45 +694,40 @@ function updateUserInterface() {
         );
 
 
-    if (
-        currentTelegramUser.photo_url
-    ) {
+    if (currentTelegramUser.photo_url) {
 
         const image = `
             <img
                 src="${currentTelegramUser.photo_url}"
                 class="w-full h-full object-cover"
+                alt=""
             >
         `;
 
 
-        avatar.innerHTML =
-            image;
+        avatar.innerHTML = image;
 
-
-        profileAvatar.innerHTML =
-            image;
+        profileAvatar.innerHTML = image;
 
     }
 
 
+    const first =
+        currentTelegramUser.first_name || "";
+
+
+    const last =
+        currentTelegramUser.last_name || "";
+
+
     const fullName =
-        (
-            currentTelegramUser.first_name ||
-            "" +
-            " " +
-            (
-                currentTelegramUser.last_name ||
-                ""
-            )
-        ).trim();
+        (first + " " + last).trim();
 
 
     document.getElementById(
         "profileName"
     ).textContent =
-        fullName ||
-        "Игрок";
+        fullName || "Игрок";
 
 
     document.getElementById(
@@ -766,14 +736,12 @@ function updateUserInterface() {
         currentTelegramUser.username
             ? "@" + currentTelegramUser.username
             : "Telegram";
-
-
 }
 
 
-/* =========================
+/* =====================================================
    МОЙ РЕЙТИНГ
-========================= */
+===================================================== */
 
 async function loadMyRating() {
 
@@ -826,8 +794,7 @@ async function loadMyRating() {
         document.getElementById(
             "myGames"
         ).textContent =
-            "Сыграно игр: " +
-            games;
+            "Сыграно игр: " + games;
 
 
         document.getElementById(
@@ -850,13 +817,12 @@ async function loadMyRating() {
         );
 
     }
-
 }
 
 
-/* =========================
-   РЕЙТИНГ ИГРОКОВ
-========================= */
+/* =====================================================
+   ОБЩИЙ РЕЙТИНГ
+===================================================== */
 
 async function loadRating() {
 
@@ -913,9 +879,11 @@ async function loadRating() {
 
             leaderboard.innerHTML = `
                 <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+
                     <p class="text-gray-500">
                         Пока нет игроков
                     </p>
+
                 </div>
             `;
 
@@ -939,18 +907,16 @@ async function loadRating() {
                     "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
 
 
+                const first =
+                    player.first_name || "";
+
+
+                const last =
+                    player.last_name || "";
+
+
                 const name =
-                    (
-                        (
-                            player.first_name ||
-                            ""
-                        ) +
-                        " " +
-                        (
-                            player.last_name ||
-                            ""
-                        )
-                    ).trim() ||
+                    (first + " " + last).trim() ||
                     "Игрок";
 
 
@@ -996,9 +962,7 @@ async function loadRating() {
                 `;
 
 
-                leaderboard.appendChild(
-                    card
-                );
+                leaderboard.appendChild(card);
 
             }
         );
@@ -1021,105 +985,13 @@ async function loadRating() {
 
             </div>
         `;
-
     }
-
 }
 
 
-/* =========================
-   ЭКРАНЫ
-========================= */
-
-function hideAllScreens() {
-
-    document.getElementById(
-        "homeScreen"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "gamesScreen"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "ratingScreen"
-    ).classList.add("hidden");
-
-
-    document.getElementById(
-        "profileScreen"
-    ).classList.add("hidden");
-
-}
-
-
-/* =========================
-   ПОКАЗ ЭКРАНА
-========================= */
-
-function showScreen(screen) {
-
-    hideAllScreens();
-
-
-    if (screen === "home") {
-
-        document.getElementById(
-            "homeScreen"
-        ).classList.remove("hidden");
-
-        return;
-    }
-
-
-    if (screen === "rating") {
-
-        document.getElementById(
-            "ratingScreen"
-        ).classList.remove("hidden");
-
-        loadRating();
-
-        return;
-    }
-
-
-    if (screen === "profile") {
-
-        document.getElementById(
-            "profileScreen"
-        ).classList.remove("hidden");
-
-        return;
-    }
-
-
-    if (screen === "games") {
-
-        document.getElementById(
-            "gamesScreen"
-        ).classList.remove("hidden");
-
-        loadGames();
-
-        return;
-    }
-
-}
-
-
-/* =========================
+/* =====================================================
    ИГРЫ
-========================= */
-
-function showGames() {
-
-    showScreen("games");
-
-}
-
+===================================================== */
 
 async function loadGames() {
 
@@ -1131,9 +1003,11 @@ async function loadGames() {
 
     gamesList.innerHTML = `
         <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+
             <p class="text-gray-500">
                 Загрузка игр...
             </p>
+
         </div>
     `;
 
@@ -1157,27 +1031,20 @@ async function loadGames() {
                 "HTTP " +
                 response.status
             );
-
         }
 
 
-        const data =
+        const games =
             await response.json();
 
 
-        if (!Array.isArray(data)) {
-
-            throw new Error(
-                "Неверный формат игр"
-            );
-
-        }
-
-
-        if (data.length === 0) {
+        if (
+            !Array.isArray(games) ||
+            games.length === 0
+        ) {
 
             gamesList.innerHTML = `
-                <div class="bg-zinc-900 rounded-3xl p-6 text-center">
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 text-center">
 
                     <p class="text-gray-400">
                         Пока игр нет
@@ -1190,6 +1057,7 @@ async function loadGames() {
                 </div>
             `;
 
+
             updateNextGame(null);
 
             return;
@@ -1199,113 +1067,274 @@ async function loadGames() {
         gamesList.innerHTML = "";
 
 
-        data.forEach(
-            function(game) {
+        /*
+         * Сначала показываем ближайшие игры.
+         */
+        games.sort(
+            function(a, b) {
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
-
-
-                const title =
-                    game.name ||
-                    game.title ||
-                    "Игра";
-
-
-                const type =
-                    game.type ||
-                    "Игра";
-
-
-                const date =
-                    game.start_at
-                        ? new Date(
-                            game.start_at
-                        )
-                        : null;
-
-
-                let dateText = "Дата не указана";
-                let timeText = "—";
-
-
-                if (date) {
-
-                    dateText =
-                        date.toLocaleDateString(
-                            "ru-RU",
-                            {
-                                day: "numeric",
-                                month: "long"
-                            }
-                        );
-
-
-                    timeText =
-                        date.toLocaleTimeString(
-                            "ru-RU",
-                            {
-                                hour: "2-digit",
-                                minute: "2-digit"
-                            }
-                        );
-
-                }
-
-
-                card.innerHTML = `
-
-                    <div class="flex justify-between items-start">
-
-                        <div>
-
-                            <p class="text-gray-500 text-sm">
-                                ${dateText}
-                            </p>
-
-                            <h2 class="font-semibold text-lg mt-1">
-                                ${title}
-                            </h2>
-
-                        </div>
-
-                        <div class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs">
-                            ${type}
-                        </div>
-
-                    </div>
-
-
-                    <div class="flex justify-between mt-5 text-sm">
-
-                        <span class="text-gray-500">
-                            Время
-                        </span>
-
-                        <span>
-                            ${timeText}
-                        </span>
-
-                    </div>
-
-                `;
-
-
-                gamesList.appendChild(
-                    card
-                );
+                return new Date(a.start_at) -
+                    new Date(b.start_at);
 
             }
         );
 
 
-        updateNextGame(data[0]);
+        /*
+         * Загружаем каждую игру.
+         */
+        for (
+            const game of games
+        ) {
+
+            const bookingsResponse =
+                await fetch(
+                    window.location.origin +
+                    "/bookings/game/" +
+                    game.id,
+                    {
+                        method: "GET",
+                        cache: "no-store"
+                    }
+                );
+
+
+            let bookings = [];
+
+
+            if (
+                bookingsResponse.ok
+            ) {
+
+                bookings =
+                    await bookingsResponse.json();
+
+            }
+
+
+            /*
+             * Количество подтверждённых игроков.
+             */
+            const confirmedPlayers =
+                bookings.filter(
+                    function(booking) {
+
+                        return booking.status ===
+                            "confirmed";
+
+                    }
+                ).length;
+
+
+            /*
+             * Ищем запись текущего пользователя.
+             */
+            const currentBooking =
+                bookings.find(
+                    function(booking) {
+
+                        return (
+                            booking.user_id ===
+                            currentUserId
+                        ) &&
+                        booking.status !==
+                            "cancelled";
+
+                    }
+                );
+
+
+            /*
+             * Дата.
+             */
+            let dateText =
+                "Дата не указана";
+
+
+            let timeText =
+                "—";
+
+
+            if (game.start_at) {
+
+                const date =
+                    new Date(
+                        game.start_at
+                    );
+
+
+                dateText =
+                    date.toLocaleDateString(
+                        "ru-RU",
+                        {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric"
+                        }
+                    );
+
+
+                timeText =
+                    date.toLocaleTimeString(
+                        "ru-RU",
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+            }
+
+
+            /*
+             * Карточка.
+             */
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
+
+
+            /*
+             * Кнопка.
+             */
+            let buttonHtml = "";
+
+
+            if (currentBooking) {
+
+                if (
+                    currentBooking.status ===
+                    "waiting"
+                ) {
+
+                    buttonHtml = `
+                        <button
+                            onclick="cancelBooking(${currentBooking.id})"
+                            class="w-full bg-zinc-800 text-white rounded-2xl py-3.5 font-semibold"
+                        >
+                            Вы в листе ожидания · Отменить
+                        </button>
+                    `;
+
+                } else {
+
+                    buttonHtml = `
+                        <button
+                            onclick="cancelBooking(${currentBooking.id})"
+                            class="w-full bg-zinc-800 text-white rounded-2xl py-3.5 font-semibold"
+                        >
+                            Вы записаны · Отменить
+                        </button>
+                    `;
+
+                }
+
+            } else if (
+                confirmedPlayers >=
+                game.max_players
+            ) {
+
+                buttonHtml = `
+                    <button
+                        onclick="createBooking(${game.id})"
+                        class="w-full bg-zinc-800 text-gray-300 rounded-2xl py-3.5 font-semibold"
+                    >
+                        В лист ожидания
+                    </button>
+                `;
+
+            } else {
+
+                buttonHtml = `
+                    <button
+                        onclick="createBooking(${game.id})"
+                        class="w-full bg-white text-black rounded-2xl py-3.5 font-semibold"
+                    >
+                        Записаться
+                    </button>
+                `;
+            }
+
+
+            /*
+             * HTML карточки.
+             */
+            card.innerHTML = `
+
+                <div class="flex justify-between items-start">
+
+                    <div>
+
+                        <p class="text-gray-500 text-sm">
+                            ${dateText}
+                        </p>
+
+                        <h2 class="font-semibold text-lg mt-1">
+                            ${game.name || "Игра"}
+                        </h2>
+
+                    </div>
+
+
+                    <div class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300 ml-3">
+                        ${game.type || "Игра"}
+                    </div>
+
+                </div>
+
+
+                <div class="grid grid-cols-2 gap-3 mt-5 mb-4">
+
+
+                    <div class="bg-zinc-800/60 rounded-2xl p-3">
+
+                        <p class="text-gray-500 text-xs">
+                            Время
+                        </p>
+
+                        <p class="font-medium mt-1">
+                            ${timeText}
+                        </p>
+
+                    </div>
+
+
+                    <div class="bg-zinc-800/60 rounded-2xl p-3">
+
+                        <p class="text-gray-500 text-xs">
+                            Игроки
+                        </p>
+
+                        <p class="font-medium mt-1">
+                            ${confirmedPlayers} / ${game.max_players}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${buttonHtml}
+
+            `;
+
+
+            gamesList.appendChild(
+                card
+            );
+        }
+
+
+        /*
+         * Первая игра — ближайшая.
+         */
+        updateNextGame(
+            games[0]
+        );
 
 
     } catch (error) {
@@ -1317,25 +1346,181 @@ async function loadGames() {
 
 
         gamesList.innerHTML = `
-            <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
 
                 <p class="text-red-400">
                     Не удалось загрузить игры
                 </p>
 
+                <p class="text-gray-600 text-sm mt-2">
+                    Ошибка соединения с сервером
+                </p>
+
             </div>
         `;
-
     }
-
 }
 
 
-/* =========================
-   БЛИЖАЙШАЯ ИГРА
-========================= */
+/* =====================================================
+   ЗАПИСЬ НА ИГРУ
+===================================================== */
 
-function updateNextGame(game) {
+async function createBooking(
+    tournamentId
+) {
+
+    if (!currentUserId) {
+
+        alert(
+            "Пользователь ещё не авторизован"
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/bookings/",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        user_id:
+                            currentUserId,
+
+                        tournament_id:
+                            tournamentId
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.detail ||
+                "Не удалось записаться"
+            );
+
+            return;
+        }
+
+
+        if (
+            data.status ===
+            "waiting"
+        ) {
+
+            alert(
+                "Мест нет. Вы добавлены в лист ожидания."
+            );
+
+        } else {
+
+            alert(
+                "Вы успешно записались на игру!"
+            );
+        }
+
+
+        await loadGames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка записи:",
+            error
+        );
+
+
+        alert(
+            "Не удалось записаться на игру."
+        );
+    }
+}
+
+
+/* =====================================================
+   ОТМЕНА ЗАПИСИ
+===================================================== */
+
+async function cancelBooking(
+    bookingId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/bookings/" +
+                bookingId,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.detail ||
+                "Не удалось отменить запись"
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Запись отменена."
+        );
+
+
+        await loadGames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка отмены записи:",
+            error
+        );
+
+
+        alert(
+            "Не удалось отменить запись."
+        );
+    }
+}
+
+
+/* =====================================================
+   БЛИЖАЙШАЯ ИГРА
+===================================================== */
+
+function updateNextGame(
+    game
+) {
 
     if (!game) {
 
@@ -1344,25 +1529,30 @@ function updateNextGame(game) {
         ).textContent =
             "Пока игр нет";
 
+
         document.getElementById(
             "nextGameDate"
         ).textContent =
             "—";
+
 
         document.getElementById(
             "nextGameTime"
         ).textContent =
             "—";
 
+
         document.getElementById(
             "nextGamePlayers"
         ).textContent =
             "—";
 
+
         document.getElementById(
             "nextGameType"
         ).textContent =
             "—";
+
 
         return;
     }
@@ -1372,7 +1562,6 @@ function updateNextGame(game) {
         "nextGameTitle"
     ).textContent =
         game.name ||
-        game.title ||
         "Игра";
 
 
@@ -1414,7 +1603,6 @@ function updateNextGame(game) {
                     minute: "2-digit"
                 }
             );
-
     }
 
 
@@ -1424,13 +1612,99 @@ function updateNextGame(game) {
         game.max_players
             ? "до " + game.max_players
             : "—";
-
 }
 
 
-/* =========================
-   ЗАПУСК
-========================= */
+/* =====================================================
+   ЭКРАНЫ
+===================================================== */
+
+function hideAllScreens() {
+
+    document.getElementById(
+        "homeScreen"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "gamesScreen"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "ratingScreen"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "profileScreen"
+    ).classList.add("hidden");
+}
+
+
+function showScreen(
+    screen
+) {
+
+    hideAllScreens();
+
+
+    if (
+        screen === "home"
+    ) {
+
+        document.getElementById(
+            "homeScreen"
+        ).classList.remove("hidden");
+
+        return;
+    }
+
+
+    if (
+        screen === "games"
+    ) {
+
+        document.getElementById(
+            "gamesScreen"
+        ).classList.remove("hidden");
+
+        loadGames();
+
+        return;
+    }
+
+
+    if (
+        screen === "rating"
+    ) {
+
+        document.getElementById(
+            "ratingScreen"
+        ).classList.remove("hidden");
+
+        loadRating();
+
+        return;
+    }
+
+
+    if (
+        screen === "profile"
+    ) {
+
+        document.getElementById(
+            "profileScreen"
+        ).classList.remove("hidden");
+
+        return;
+    }
+}
+
+
+/* =====================================================
+   ЗАПУСК ПРИЛОЖЕНИЯ
+===================================================== */
 
 async function initApp() {
 
@@ -1464,15 +1738,12 @@ async function initApp() {
     console.log(
         "Poker Club запущен"
     );
-
 }
 
 
 initApp();
 
-
 </script>
-
 
 </body>
 </html>
