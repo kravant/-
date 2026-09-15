@@ -2,7 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Poker Club</title>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -13,21 +17,46 @@
 
 <div class="max-w-md mx-auto px-5 py-6">
 
-    <!-- Главный экран -->
+    <!-- =========================
+         ГЛАВНЫЙ ЭКРАН
+    ========================== -->
+
     <div id="homeScreen">
 
         <div class="flex justify-between items-center mb-8">
+
             <div>
-                <p class="text-gray-400 text-sm">Добро пожаловать</p>
-                <h1 class="text-2xl font-bold">Poker Club ♠️</h1>
+                <p class="text-gray-400 text-sm">
+                    Добро пожаловать
+                </p>
+
+                <h1 class="text-2xl font-bold">
+                    Poker Club ♠️
+                </h1>
             </div>
 
-            <div class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-xl">
+            <div
+                id="avatar"
+                class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-xl overflow-hidden"
+            >
                 ♠
             </div>
+
         </div>
 
+
+        <!-- Статус авторизации -->
+
+        <div
+            id="authStatus"
+            class="bg-gray-900 rounded-3xl p-4 mb-5 text-sm text-gray-400"
+        >
+            Подключение к Telegram...
+        </div>
+
+
         <!-- Ближайшая игра -->
+
         <div class="bg-gray-900 rounded-3xl p-5 mb-5">
 
             <p class="text-gray-400 text-sm mb-2">
@@ -35,38 +64,40 @@
             </p>
 
             <h2 class="text-xl font-semibold mb-4">
-                Friday Poker Night
+                Пока игр нет
             </h2>
 
             <div class="space-y-2 text-sm text-gray-300">
 
                 <div class="flex justify-between">
                     <span>Дата</span>
-                    <span>Сегодня</span>
+                    <span>—</span>
                 </div>
 
                 <div class="flex justify-between">
                     <span>Время</span>
-                    <span>19:00</span>
+                    <span>—</span>
                 </div>
 
                 <div class="flex justify-between">
                     <span>Стол</span>
-                    <span>№1</span>
+                    <span>—</span>
                 </div>
 
             </div>
 
             <button
-                onclick="alert('Запись на игру')"
+                onclick="alert('Игры появятся здесь')"
                 class="w-full mt-5 bg-white text-black rounded-2xl py-3 font-semibold"
             >
-                Записаться
+                Посмотреть игры
             </button>
 
         </div>
 
+
         <!-- Мой рейтинг -->
+
         <div class="bg-gray-900 rounded-3xl p-5 mb-5">
 
             <p class="text-gray-400 text-sm mb-2">
@@ -99,7 +130,11 @@
 
     </div>
 
-    <!-- Экран рейтинга -->
+
+    <!-- =========================
+         ЭКРАН РЕЙТИНГА
+    ========================== -->
+
     <div id="ratingScreen" class="hidden">
 
         <div class="flex items-center mb-8">
@@ -124,7 +159,11 @@
 
     </div>
 
-    <!-- Навигация -->
+
+    <!-- =========================
+         НАВИГАЦИЯ
+    ========================== -->
+
     <div
         id="navigation"
         class="grid grid-cols-3 gap-3 mt-8"
@@ -161,74 +200,242 @@
 
 </div>
 
+
 <script>
 
-const tg = window.Telegram.WebApp;
+/* =========================
+   TELEGRAM
+========================= */
 
-tg.ready();
-tg.expand();
-
+let tg = null;
 let currentUserId = null;
 
 
 /* =========================
-   АВТОРИЗАЦИЯ TELEGRAM
+   СТАТУС
+========================= */
+
+function setAuthStatus(
+    message,
+    type = "normal"
+) {
+
+    const element =
+        document.getElementById(
+            "authStatus"
+        );
+
+    element.textContent = message;
+
+    element.className =
+        "rounded-3xl p-4 mb-5 text-sm";
+
+    if (type === "success") {
+
+        element.classList.add(
+            "bg-green-950",
+            "text-green-300"
+        );
+
+        return;
+    }
+
+    if (type === "error") {
+
+        element.classList.add(
+            "bg-red-950",
+            "text-red-300"
+        );
+
+        return;
+    }
+
+    element.classList.add(
+        "bg-gray-900",
+        "text-gray-400"
+    );
+}
+
+
+/* =========================
+   TELEGRAM SDK
+========================= */
+
+function initTelegram() {
+
+    if (
+        !window.Telegram ||
+        !window.Telegram.WebApp
+    ) {
+
+        setAuthStatus(
+            "Telegram WebApp SDK не загрузился.",
+            "error"
+        );
+
+        console.error(
+            "Telegram WebApp SDK отсутствует"
+        );
+
+        return false;
+    }
+
+    tg =
+        window.Telegram.WebApp;
+
+    tg.ready();
+    tg.expand();
+
+    console.log(
+        "Telegram WebApp SDK загружен"
+    );
+
+    return true;
+}
+
+
+/* =========================
+   АВТОРИЗАЦИЯ
 ========================= */
 
 async function authorizeUser() {
 
+    if (!tg) {
+
+        return false;
+    }
+
     try {
 
-        const initData = tg.initData;
-console.log(
-    "Telegram initData:",
-    initData
-);
+        const initData =
+            tg.initData;
+
+        console.log(
+            "Telegram initData:",
+            initData
+                ? "ЕСТЬ, длина = " + initData.length
+                : "НЕТ"
+        );
+
+
         if (!initData) {
 
+            setAuthStatus(
+                "Telegram не передал данные авторизации.",
+                "error"
+            );
+
             console.error(
-                "Telegram initData отсутствует"
+                "tg.initData отсутствует"
             );
 
             return false;
         }
 
-        const response = await fetch(
-            "/auth/telegram",
-            {
-                method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    init_data: initData
-                })
-            }
+        setAuthStatus(
+            "Авторизация..."
         );
+
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/auth/telegram",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        init_data:
+                            initData
+                    })
+                }
+            );
+
+
+        const responseText =
+            await response.text();
+
 
         if (!response.ok) {
 
             console.error(
                 "Ошибка авторизации:",
                 response.status,
-                await response.text()
+                responseText
+            );
+
+            setAuthStatus(
+                "Ошибка авторизации: HTTP " +
+                response.status,
+                "error"
             );
 
             return false;
         }
 
+
         const data =
-            await response.json();
+            JSON.parse(
+                responseText
+            );
+
 
         currentUserId =
             data.user_id;
+
 
         console.log(
             "Пользователь авторизован:",
             currentUserId
         );
+
+
+        setAuthStatus(
+            "Вы авторизованы",
+            "success"
+        );
+
+
+        /* Аватар Telegram */
+
+        if (
+            tg.initDataUnsafe &&
+            tg.initDataUnsafe.user
+        ) {
+
+            const telegramUser =
+                tg.initDataUnsafe.user;
+
+
+            const avatar =
+                document.getElementById(
+                    "avatar"
+                );
+
+
+            if (
+                telegramUser.photo_url
+            ) {
+
+                avatar.innerHTML = `
+                    <img
+                        src="${telegramUser.photo_url}"
+                        class="w-full h-full object-cover"
+                    >
+                `;
+
+            } else {
+
+                avatar.textContent = "♠";
+            }
+        }
+
 
         return true;
 
@@ -237,6 +444,11 @@ console.log(
         console.error(
             "Ошибка авторизации:",
             error
+        );
+
+        setAuthStatus(
+            "Не удалось подключиться к серверу.",
+            "error"
         );
 
         return false;
@@ -254,30 +466,39 @@ async function loadMyRating() {
         return;
     }
 
+
     try {
 
-        const response = await fetch(
-            "/rating/user/" + currentUserId,
-            {
-                method: "GET",
-                cache: "no-store"
-            }
-        );
+        const response =
+            await fetch(
+                window.location.origin +
+                "/rating/user/" +
+                currentUserId,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
 
         if (!response.ok) {
 
             throw new Error(
-                "HTTP " + response.status
+                "HTTP " +
+                response.status
             );
         }
 
+
         const data =
             await response.json();
+
 
         document.getElementById(
             "myRating"
         ).textContent =
             data.rating ?? 0;
+
 
         document.getElementById(
             "myGames"
@@ -285,13 +506,13 @@ async function loadMyRating() {
             "Сыграно игр: " +
             (data.games_played ?? 0);
 
+
     } catch (error) {
 
         console.error(
-            "Ошибка загрузки моего рейтинга:",
+            "Ошибка загрузки рейтинга:",
             error
         );
-
     }
 }
 
@@ -307,40 +528,41 @@ async function loadRating() {
             "leaderboard"
         );
 
+
     leaderboard.innerHTML = `
         <div class="bg-gray-900 rounded-3xl p-5 text-center">
-
             <p class="text-gray-400">
                 Загрузка рейтинга...
             </p>
-
         </div>
     `;
 
+
     try {
 
-        const response = await fetch(
-            "/rating/",
-            {
-                method: "GET",
-                cache: "no-store"
-            }
-        );
+        const response =
+            await fetch(
+                window.location.origin +
+                "/rating/",
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
 
         if (!response.ok) {
 
             throw new Error(
-                "HTTP " + response.status
+                "HTTP " +
+                response.status
             );
         }
+
 
         const data =
             await response.json();
 
-        console.log(
-            "Рейтинг:",
-            data
-        );
 
         if (!Array.isArray(data)) {
 
@@ -349,7 +571,6 @@ async function loadRating() {
             );
         }
 
-        /* Нет игроков */
 
         if (data.length === 0) {
 
@@ -366,41 +587,50 @@ async function loadRating() {
             return;
         }
 
-        /* Очищаем рейтинг */
 
         leaderboard.innerHTML = "";
 
-        /* Создаём карточки игроков */
 
         data.forEach(
-            function(player, index) {
+            function(
+                player,
+                index
+            ) {
 
                 const card =
                     document.createElement(
                         "div"
                     );
 
+
                 card.className =
                     "bg-gray-900 rounded-3xl p-5";
+
 
                 const firstName =
                     player.first_name || "";
 
+
                 const lastName =
                     player.last_name || "";
+
 
                 const name =
                     (
                         firstName +
                         " " +
                         lastName
-                    ).trim() || "Игрок";
+                    ).trim() ||
+                    "Игрок";
+
 
                 const rating =
                     player.rating ?? 0;
 
+
                 const games =
                     player.games_played ?? 0;
+
 
                 card.innerHTML = `
                     <div class="flex items-center justify-between">
@@ -444,12 +674,13 @@ async function loadRating() {
                     </div>
                 `;
 
+
                 leaderboard.appendChild(
                     card
                 );
-
             }
         );
+
 
     } catch (error) {
 
@@ -457,6 +688,7 @@ async function loadRating() {
             "Ошибка загрузки рейтинга:",
             error
         );
+
 
         leaderboard.innerHTML = `
             <div class="bg-gray-900 rounded-3xl p-5 text-center">
@@ -486,17 +718,22 @@ function showScreen(screen) {
             "homeScreen"
         );
 
+
     const ratingScreen =
         document.getElementById(
             "ratingScreen"
         );
+
 
     const navigation =
         document.getElementById(
             "navigation"
         );
 
-    if (screen === "rating") {
+
+    if (
+        screen === "rating"
+    ) {
 
         homeScreen.classList.add(
             "hidden"
@@ -515,7 +752,10 @@ function showScreen(screen) {
         return;
     }
 
-    if (screen === "home") {
+
+    if (
+        screen === "home"
+    ) {
 
         ratingScreen.classList.add(
             "hidden"
@@ -528,13 +768,12 @@ function showScreen(screen) {
         navigation.classList.remove(
             "hidden"
         );
-
     }
 }
 
 
 /* =========================
-   ЗАПУСК ПРИЛОЖЕНИЯ
+   ЗАПУСК
 ========================= */
 
 async function initApp() {
@@ -543,20 +782,32 @@ async function initApp() {
         "Poker Club запускается"
     );
 
+
+    const telegramReady =
+        initTelegram();
+
+
+    if (!telegramReady) {
+
+        return;
+    }
+
+
     const authorized =
         await authorizeUser();
+
 
     if (authorized) {
 
         await loadMyRating();
-
     }
+
 
     console.log(
         "Poker Club запущен"
     );
-
 }
+
 
 initApp();
 
