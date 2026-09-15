@@ -180,7 +180,10 @@ async function authorizeUser() {
     try {
 
         const initData = tg.initData;
-
+console.log(
+    "Telegram initData:",
+    initData
+);
         if (!initData) {
 
             console.error(
