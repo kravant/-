@@ -72,11 +72,22 @@
             </div>
 
 
-            <div
-                id="avatar"
-                class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl overflow-hidden"
-            >
-                ♠
+                        <div class="flex items-center gap-3">
+
+                <div
+                    id="adminBadge"
+                    class="hidden bg-yellow-500/20 text-yellow-400 text-xs font-bold px-2.5 py-1 rounded-lg"
+                >
+                    ADMIN
+                </div>
+
+                <div
+                    id="avatar"
+                    class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl overflow-hidden"
+                >
+                    ♠
+                </div>
+
             </div>
 
         </div>
@@ -738,6 +749,79 @@ function updateUserInterface() {
             : "Telegram";
 }
 
+/* =====================================================
+   ПРОФИЛЬ (is_admin)
+===================================================== */
+
+async function loadMe() {
+
+    if (!tg || !tg.initData) {
+        console.warn("loadMe: initData отсутствует");
+        return null;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            window.location.origin + "/users/me",
+            {
+                method: "GET",
+                headers: {
+                    "X-Init-Data": tg.initData
+                },
+                cache: "no-store"
+            }
+        );
+
+
+        if (!response.ok) {
+
+            console.warn(
+                "loadMe: не авторизован (",
+                response.status,
+                ")"
+            );
+
+            return null;
+        }
+
+
+        const me =
+            await response.json();
+
+
+        console.log("Мой профиль:", me);
+
+
+        if (me.is_admin) {
+
+            const badge =
+                document.getElementById(
+                    "adminBadge"
+                );
+
+            if (badge) {
+                badge.classList.remove("hidden");
+            }
+
+            console.log("🛠 Ты админ");
+        }
+
+
+        return me;
+
+
+    } catch (error) {
+
+        console.error(
+            "loadMe: ошибка запроса",
+            error
+        );
+
+        return null;
+    }
+}
 
 /* =====================================================
    МОЙ РЕЙТИНГ
@@ -1726,7 +1810,9 @@ async function initApp() {
         await authorizeUser();
 
 
-    if (authorized) {
+       if (authorized) {
+
+        await loadMe();
 
         await loadMyRating();
 

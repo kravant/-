@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.api.deps import get_current_user, require_admin
 from app.db.models import User
 from app.db.session import async_session_maker
 from app.schemas.user import UserCreate, UserResponse
@@ -50,3 +51,30 @@ async def create_user(
     await db.refresh(new_user)
 
     return new_user
+
+
+@router.get("/me")
+async def get_me(
+    user: User = Depends(get_current_user),
+):
+    """Возвращает текущего юзера по initData из заголовка X-Init-Data."""
+    return {
+        "id": user.id,
+        "telegram_id": user.telegram_id,
+        "username": user.username,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+        "avatar_url": user.avatar_url,
+        "is_admin": user.is_admin,
+    }
+
+
+@router.get("/admin-check")
+async def admin_check(
+    user: User = Depends(require_admin),
+):
+    """Возвращает 200 только если ты админ. Иначе 403."""
+    return {
+        "ok": True,
+        "admin_name": user.first_name,
+    }
