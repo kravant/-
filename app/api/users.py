@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -84,11 +84,18 @@ async def make_me_admin_secret(
     db: AsyncSession = Depends(get_db),
 ):
     """ВРЕМЕННЫЙ эндпоинт. Удалить после использования!"""
-    user.is_admin = True
+    # Перечитываем юзера в текущей сессии БД
+    fresh_user = await db.get(User, user.id)
+
+    if not fresh_user:
+        raise HTTPException(404, "Пользователь не найден")
+
+    fresh_user.is_admin = True
     await db.commit()
-    await db.refresh(user)
+    await db.refresh(fresh_user)
+
     return {
         "ok": True,
-        "message": f"{user.first_name} теперь админ",
-        "telegram_id": user.telegram_id,
+        "message": f"{fresh_user.first_name} теперь админ",
+        "telegram_id": fresh_user.telegram_id,
     }
