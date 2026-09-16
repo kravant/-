@@ -80,13 +80,6 @@
                     ADMIN
                 </div>
 
-                <button
-                    id="makeAdminBtn"
-                    class="hidden bg-blue-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg"
-                    onclick="makeMeAdmin()"
-                >
-                    🛠 Стать админом
-                </button>
 
                 <div
                     id="avatar"
@@ -756,6 +749,7 @@ function updateUserInterface() {
             : "Telegram";
 }
 
+
 /* =====================================================
    ПРОФИЛЬ (is_admin)
 ===================================================== */
@@ -783,7 +777,6 @@ async function loadMe() {
 
 
         if (!response.ok) {
-                    alert("ОШИБКА: " + response.status);
 
             console.warn(
                 "loadMe: не авторизован (",
@@ -795,15 +788,12 @@ async function loadMe() {
         }
 
 
-        const me =
-            await response.json();
-
+        const me = await response.json();
 
         console.log("Мой профиль:", me);
-                alert("ПРОФИЛЬ: " + JSON.stringify(me));
 
 
-               if (me.is_admin) {
+        if (me.is_admin) {
 
             const badge =
                 document.getElementById(
@@ -815,18 +805,8 @@ async function loadMe() {
             }
 
             console.log("🛠 Ты админ");
+        }
 
-        } else {
-
-            const btn =
-                document.getElementById(
-                    "makeAdminBtn"
-                );
-
-            if (btn) {
-                btn.classList.remove("hidden");
-            }
-        }ll
 
         return me;
 
@@ -842,42 +822,7 @@ async function loadMe() {
     }
 }
 
-async function makeMeAdmin() {
 
-    if (!tg || !tg.initData) {
-        alert("Нет initData");
-        return;
-    }
-
-    try {
-
-        const response = await fetch(
-            window.location.origin + "/users/make-me-admin-secret",
-            {
-                method: "POST",
-                headers: {
-                    "X-Init-Data": tg.initData
-                }
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            alert("Ошибка: " + response.status + "\n" + JSON.stringify(data));
-            return;
-        }
-
-        alert("✅ " + (data.message || "Готово"));
-
-        // перезагрузим приложение
-        location.reload();
-
-    } catch (error) {
-        console.error(error);
-        alert("Ошибка запроса: " + error.message);
-    }
-}
 /* =====================================================
    МОЙ РЕЙТИНГ
 ===================================================== */
@@ -1865,7 +1810,7 @@ async function initApp() {
         await authorizeUser();
 
 
-       if (authorized) {
+    if (authorized) {
 
         await loadMe();
 
