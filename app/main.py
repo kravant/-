@@ -48,12 +48,12 @@ app = FastAPI(
 
 
 app.mount(
-    "/app-v2",
+    "/app",
     StaticFiles(
         directory="static",
         html=True,
     ),
-    name="static-v2",
+    name="static",
 )
 
 
