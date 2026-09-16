@@ -776,6 +776,7 @@ async function loadMe() {
 
 
         if (!response.ok) {
+                    alert("ОШИБКА: " + response.status);
 
             console.warn(
                 "loadMe: не авторизован (",
@@ -792,6 +793,7 @@ async function loadMe() {
 
 
         console.log("Мой профиль:", me);
+                alert("ПРОФИЛЬ: " + JSON.stringify(me));
 
 
         if (me.is_admin) {
