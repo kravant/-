@@ -78,3 +78,17 @@ async def admin_check(
         "ok": True,
         "admin_name": user.first_name,
     }
+@router.post("/make-me-admin-secret")
+async def make_me_admin_secret(
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """ВРЕМЕННЫЙ эндпоинт. Удалить после использования!"""
+    user.is_admin = True
+    await db.commit()
+    await db.refresh(user)
+    return {
+        "ok": True,
+        "message": f"{user.first_name} теперь админ",
+        "telegram_id": user.telegram_id,
+    }
