@@ -24,9 +24,7 @@
         }
 
         button {
-            transition:
-                transform 0.15s ease,
-                opacity 0.15s ease;
+            transition: transform 0.15s ease, opacity 0.15s ease;
         }
 
         button:active {
@@ -42,18 +40,18 @@
     </style>
 </head>
 
+
 <body class="text-white min-h-screen">
 
 
 <div class="max-w-md mx-auto px-5 pt-6 pb-28">
 
 
-    <!-- =====================================================
+    <!-- =========================
          ГЛАВНАЯ
-    ====================================================== -->
+    ========================== -->
 
     <div id="homeScreen">
-
 
         <div class="flex justify-between items-center mb-8">
 
@@ -104,7 +102,6 @@
 
 
             <div
-                id="nextGameCard"
                 class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5"
             >
 
@@ -128,7 +125,7 @@
 
                     <div
                         id="nextGameType"
-                        class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300 ml-3"
+                        class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300"
                     >
                         —
                     </div>
@@ -185,11 +182,13 @@
         </section>
 
 
-        <!-- МОЙ РЕЙТИНГ -->
+        <!-- РЕЙТИНГ -->
 
         <section class="mb-5">
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+            <div
+                class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5"
+            >
 
                 <div class="flex justify-between items-start">
 
@@ -243,7 +242,7 @@
         </section>
 
 
-        <!-- АДМИН -->
+        <!-- АДМИНКА -->
 
         <section
             id="adminHomeSection"
@@ -273,7 +272,6 @@
 
                     </div>
 
-
                     <div class="text-2xl">
                         ⚙️
                     </div>
@@ -285,7 +283,7 @@
         </section>
 
 
-        <!-- БЫСТРЫЙ ДОСТУП -->
+        <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
 
         <section>
 
@@ -295,7 +293,6 @@
 
 
             <div class="grid grid-cols-2 gap-3">
-
 
                 <button
                     onclick="showScreen('games')"
@@ -343,9 +340,9 @@
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          ИГРЫ
-    ====================================================== -->
+    ========================== -->
 
     <div
         id="gamesScreen"
@@ -371,15 +368,14 @@
         <div
             id="gamesList"
             class="space-y-3"
-        >
-        </div>
+        ></div>
 
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          РЕЙТИНГ
-    ====================================================== -->
+    ========================== -->
 
     <div
         id="ratingScreen"
@@ -405,15 +401,14 @@
         <div
             id="leaderboard"
             class="space-y-3"
-        >
-        </div>
+        ></div>
 
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          ПРОФИЛЬ
-    ====================================================== -->
+    ========================== -->
 
     <div
         id="profileScreen"
@@ -436,8 +431,9 @@
         </div>
 
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 text-center">
-
+        <div
+            class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 text-center"
+        >
 
             <div
                 id="profileAvatar"
@@ -464,7 +460,6 @@
 
 
             <div class="grid grid-cols-2 gap-3 mt-6">
-
 
                 <div class="bg-zinc-800/60 rounded-2xl p-4">
 
@@ -504,15 +499,14 @@
     </div>
 
 
-    <!-- =====================================================
+    <!-- =========================
          АДМИНКА
-    ====================================================== -->
+    ========================== -->
 
     <div
         id="adminScreen"
         class="hidden"
     >
-
 
         <div class="flex items-center mb-8">
 
@@ -540,7 +534,9 @@
 
         <!-- СОЗДАНИЕ ИГРЫ -->
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 mb-5">
+        <div
+            class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 mb-5"
+        >
 
             <h2 class="text-lg font-semibold mb-4">
                 Создать игру
@@ -548,7 +544,6 @@
 
 
             <div class="space-y-3">
-
 
                 <input
                     id="adminGameName"
@@ -658,7 +653,7 @@
                     min="1"
                     value="9"
                     placeholder="Максимум игроков"
-                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white"
                 >
 
 
@@ -697,17 +692,16 @@
             <div
                 id="adminGamesList"
                 class="space-y-3"
-            >
-            </div>
+            ></div>
 
         </div>
 
     </div>
 
 
-    <!-- =====================================================
-         АДМИН — ИГРОКИ
-    ====================================================== -->
+    <!-- =========================
+         ИГРОКИ
+    ========================== -->
 
     <div
         id="adminBookingsScreen"
@@ -744,8 +738,7 @@
         <div
             id="adminBookingsList"
             class="space-y-3"
-        >
-        </div>
+        ></div>
 
     </div>
 
@@ -753,17 +746,15 @@
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      НИЖНЯЯ НАВИГАЦИЯ
-====================================================== -->
+========================== -->
 
 <div
-    id="navigation"
     class="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur border-t border-zinc-800"
 >
 
     <div class="max-w-md mx-auto grid grid-cols-3 px-5 py-3">
-
 
         <button
             onclick="showScreen('home')"
@@ -820,7 +811,7 @@
 <script>
 
 /* =====================================================
-   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+   ГЛОБАЛЬНЫЕ ДАННЫЕ
 ===================================================== */
 
 let tg = null;
@@ -911,22 +902,19 @@ async function authorizeUser() {
             );
 
 
-        if (!response.ok) {
+        const data =
+            await response.json();
 
-            const error =
-                await response.text();
+
+        if (!response.ok) {
 
             console.error(
                 "Ошибка авторизации:",
-                error
+                data
             );
 
             return false;
         }
-
-
-        const data =
-            await response.json();
 
 
         currentUserId =
@@ -941,9 +929,6 @@ async function authorizeUser() {
         updateUserInterface();
 
 
-        /*
-         * Проверяем админку через backend.
-         */
         await checkAdmin();
 
 
@@ -968,101 +953,45 @@ async function authorizeUser() {
 
 async function checkAdmin() {
 
-    if (!telegramInitData) {
+    isAdmin = false;
 
-        isAdmin = false;
 
-        return false;
+    if (
+        currentTelegramUser &&
+        Number(
+            currentTelegramUser.id
+        ) === 777284368
+    ) {
+
+        isAdmin = true;
+
+
+        document
+            .getElementById(
+                "adminHomeSection"
+            )
+            .classList
+            .remove("hidden");
+
+
+        return true;
     }
 
 
-    try {
-
-        const response =
-            await fetch(
-                window.location.origin +
-                "/admin/check",
-                {
-                    method: "GET",
-
-                    headers: {
-                        "X-Telegram-Init-Data":
-                            telegramInitData
-                    },
-
-                    cache: "no-store"
-                }
-            );
+    document
+        .getElementById(
+            "adminHomeSection"
+        )
+        .classList
+        .add("hidden");
 
 
-        if (!response.ok) {
-
-            isAdmin = false;
-
-            document
-                .getElementById(
-                    "adminHomeSection"
-                )
-                .classList.add(
-                    "hidden"
-                );
-
-            return false;
-        }
-
-
-        const data =
-            await response.json();
-
-
-        isAdmin =
-            data.is_admin === true;
-
-
-        if (isAdmin) {
-
-            document
-                .getElementById(
-                    "adminHomeSection"
-                )
-                .classList
-                .remove(
-                    "hidden"
-                );
-
-        } else {
-
-            document
-                .getElementById(
-                    "adminHomeSection"
-                )
-                .classList
-                .add(
-                    "hidden"
-                );
-        }
-
-
-        return isAdmin;
-
-
-    } catch (error) {
-
-        console.error(
-            "Ошибка проверки админа:",
-            error
-        );
-
-
-        isAdmin = false;
-
-        return false;
-    }
+    return false;
 }
 
 
 /* =====================================================
-   АДМИНСКИЙ ЗАГОЛОВОК
+   ЗАГОЛОВКИ АДМИНА
 ===================================================== */
 
 function adminHeaders() {
@@ -1078,7 +1007,7 @@ function adminHeaders() {
 
 
 /* =====================================================
-   ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
+   ПОЛЬЗОВАТЕЛЬ
 ===================================================== */
 
 function updateUserInterface() {
@@ -1096,7 +1025,8 @@ function updateUserInterface() {
     document.getElementById(
         "welcomeText"
     ).textContent =
-        "Привет, " + firstName;
+        "Привет, " +
+        firstName;
 
 
     const avatar =
@@ -1130,7 +1060,6 @@ function updateUserInterface() {
 
         profileAvatar.innerHTML =
             image;
-
     }
 
 
@@ -1144,14 +1073,15 @@ function updateUserInterface() {
         "";
 
 
-    const fullName =
-        (first + " " + last).trim();
-
-
     document.getElementById(
         "profileName"
     ).textContent =
-        fullName || "Игрок";
+        (
+            first +
+            " " +
+            last
+        ).trim() ||
+        "Игрок";
 
 
     document.getElementById(
@@ -1165,7 +1095,7 @@ function updateUserInterface() {
 
 
 /* =====================================================
-   МОЙ РЕЙТИНГ
+   РЕЙТИНГ ПОЛЬЗОВАТЕЛЯ
 ===================================================== */
 
 async function loadMyRating() {
@@ -1190,11 +1120,7 @@ async function loadMyRating() {
 
 
         if (!response.ok) {
-
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
+            return;
         }
 
 
@@ -1238,7 +1164,7 @@ async function loadMyRating() {
     } catch (error) {
 
         console.error(
-            "Ошибка загрузки рейтинга:",
+            "Ошибка рейтинга:",
             error
         );
     }
@@ -1251,16 +1177,16 @@ async function loadMyRating() {
 
 async function loadRating() {
 
-    const leaderboard =
+    const list =
         document.getElementById(
             "leaderboard"
         );
 
 
-    leaderboard.innerHTML = `
+    list.innerHTML = `
         <div class="bg-zinc-900 rounded-3xl p-5 text-center">
             <p class="text-gray-500">
-                Загрузка рейтинга...
+                Загрузка...
             </p>
         </div>
     `;
@@ -1273,31 +1199,25 @@ async function loadRating() {
                 window.location.origin +
                 "/rating/",
                 {
-                    method: "GET",
                     cache: "no-store"
                 }
             );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
-        }
 
 
         const data =
             await response.json();
 
 
-        if (
-            !Array.isArray(data) ||
-            data.length === 0
-        ) {
+        if (!Array.isArray(data)) {
+            throw new Error(
+                "Неверный формат рейтинга"
+            );
+        }
 
-            leaderboard.innerHTML = `
+
+        if (data.length === 0) {
+
+            list.innerHTML = `
                 <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
 
                     <p class="text-gray-500">
@@ -1311,11 +1231,23 @@ async function loadRating() {
         }
 
 
-        leaderboard.innerHTML = "";
+        list.innerHTML = "";
 
 
         data.forEach(
             function(player, index) {
+
+                const name =
+                    (
+                        player.first_name ||
+                        ""
+                    ) +
+                    " " +
+                    (
+                        player.last_name ||
+                        ""
+                    );
+
 
                 const card =
                     document.createElement(
@@ -1327,22 +1259,9 @@ async function loadRating() {
                     "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
 
 
-                const first =
-                    player.first_name || "";
-
-
-                const last =
-                    player.last_name || "";
-
-
-                const name =
-                    (first + " " + last).trim() ||
-                    "Игрок";
-
-
                 card.innerHTML = `
 
-                    <div class="flex items-center justify-between">
+                    <div class="flex justify-between items-center">
 
                         <div class="flex items-center gap-4">
 
@@ -1353,7 +1272,7 @@ async function loadRating() {
                             <div>
 
                                 <p class="font-semibold">
-                                    ${name}
+                                    ${name.trim() || "Игрок"}
                                 </p>
 
                                 <p class="text-gray-500 text-sm">
@@ -1382,7 +1301,7 @@ async function loadRating() {
                 `;
 
 
-                leaderboard.appendChild(
+                list.appendChild(
                     card
                 );
             }
@@ -1392,12 +1311,12 @@ async function loadRating() {
     } catch (error) {
 
         console.error(
-            "Ошибка загрузки рейтинга:",
+            "Ошибка рейтинга:",
             error
         );
 
 
-        leaderboard.innerHTML = `
+        list.innerHTML = `
             <div class="bg-zinc-900 rounded-3xl p-5 text-center">
 
                 <p class="text-red-400">
@@ -1416,19 +1335,17 @@ async function loadRating() {
 
 async function loadGames() {
 
-    const gamesList =
+    const list =
         document.getElementById(
             "gamesList"
         );
 
 
-    gamesList.innerHTML = `
+    list.innerHTML = `
         <div class="bg-zinc-900 rounded-3xl p-5 text-center">
-
             <p class="text-gray-500">
                 Загрузка игр...
             </p>
-
         </div>
     `;
 
@@ -1440,19 +1357,9 @@ async function loadGames() {
                 window.location.origin +
                 "/games/",
                 {
-                    method: "GET",
                     cache: "no-store"
                 }
             );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
-        }
 
 
         const games =
@@ -1464,7 +1371,7 @@ async function loadGames() {
             games.length === 0
         ) {
 
-            gamesList.innerHTML = `
+            list.innerHTML = `
                 <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 text-center">
 
                     <p class="text-gray-400">
@@ -1472,16 +1379,14 @@ async function loadGames() {
                     </p>
 
                     <p class="text-gray-600 text-sm mt-2">
-                        Здесь появятся ближайшие игры клуба
+                        Здесь появятся игры клуба
                     </p>
 
                 </div>
             `;
 
 
-            updateNextGame(
-                null
-            );
+            updateNextGame(null);
 
 
             return;
@@ -1502,7 +1407,7 @@ async function loadGames() {
         );
 
 
-        gamesList.innerHTML = "";
+        list.innerHTML = "";
 
 
         for (
@@ -1520,7 +1425,6 @@ async function loadGames() {
                         "/bookings/game/" +
                         game.id,
                         {
-                            method: "GET",
                             cache: "no-store"
                         }
                     );
@@ -1532,13 +1436,12 @@ async function loadGames() {
 
                     bookings =
                         await bookingsResponse.json();
-                }
 
+                }
 
             } catch (error) {
 
                 console.error(
-                    "Ошибка загрузки записей:",
                     error
                 );
             }
@@ -1578,46 +1481,34 @@ async function loadGames() {
                 );
 
 
-            let dateText =
-                "Дата не указана";
+            const date =
+                new Date(
+                    game.start_at
+                );
 
 
-            let timeText =
-                "—";
+            const dateText =
+                date.toLocaleDateString(
+                    "ru-RU",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
 
 
-            if (game.start_at) {
-
-                const date =
-                    new Date(
-                        game.start_at
-                    );
-
-
-                dateText =
-                    date.toLocaleDateString(
-                        "ru-RU",
-                        {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric"
-                        }
-                    );
+            const timeText =
+                date.toLocaleTimeString(
+                    "ru-RU",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }
+                );
 
 
-                timeText =
-                    date.toLocaleTimeString(
-                        "ru-RU",
-                        {
-                            hour: "2-digit",
-                            minute: "2-digit"
-                        }
-                    );
-            }
-
-
-            let buttonHtml =
-                "";
+            let buttonHtml = "";
 
 
             if (currentBooking) {
@@ -1636,7 +1527,7 @@ async function loadGames() {
                     buttonHtml = `
                         <button
                             onclick="cancelBooking(${currentBooking.id})"
-                            class="w-full bg-zinc-800 text-white rounded-2xl py-3.5 font-semibold"
+                            class="w-full bg-zinc-800 rounded-2xl py-3.5 font-semibold"
                         >
                             Вы в листе ожидания · Отменить
                         </button>
@@ -1647,26 +1538,13 @@ async function loadGames() {
                     buttonHtml = `
                         <button
                             onclick="cancelBooking(${currentBooking.id})"
-                            class="w-full bg-zinc-800 text-white rounded-2xl py-3.5 font-semibold"
+                            class="w-full bg-zinc-800 rounded-2xl py-3.5 font-semibold"
                         >
                             Вы записаны · Отменить
                         </button>
                     `;
+
                 }
-
-            } else if (
-                confirmedPlayers >=
-                game.max_players
-            ) {
-
-                buttonHtml = `
-                    <button
-                        onclick="createBooking(${game.id})"
-                        class="w-full bg-zinc-800 text-gray-300 rounded-2xl py-3.5 font-semibold"
-                    >
-                        В лист ожидания
-                    </button>
-                `;
 
             } else {
 
@@ -1675,7 +1553,11 @@ async function loadGames() {
                         onclick="createBooking(${game.id})"
                         class="w-full bg-white text-black rounded-2xl py-3.5 font-semibold"
                     >
-                        Записаться
+                        ${
+                            confirmedPlayers >= game.max_players
+                                ? "В лист ожидания"
+                                : "Записаться"
+                        }
                     </button>
                 `;
             }
@@ -1693,7 +1575,7 @@ async function loadGames() {
 
             card.innerHTML = `
 
-                <div class="flex justify-between items-start">
+                <div class="flex justify-between items-start gap-3">
 
                     <div>
 
@@ -1708,7 +1590,7 @@ async function loadGames() {
                     </div>
 
 
-                    <div class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300 ml-3">
+                    <div class="bg-zinc-800 rounded-xl px-3 py-1.5 text-xs text-gray-300">
                         ${game.type || "Игра"}
                     </div>
 
@@ -1727,7 +1609,6 @@ async function loadGames() {
 
 
                 <div class="grid grid-cols-2 gap-3 mt-5 mb-4">
-
 
                     <div class="bg-zinc-800/60 rounded-2xl p-3">
 
@@ -1773,7 +1654,7 @@ async function loadGames() {
             `;
 
 
-            gamesList.appendChild(
+            list.appendChild(
                 card
             );
         }
@@ -1787,12 +1668,12 @@ async function loadGames() {
     } catch (error) {
 
         console.error(
-            "Ошибка загрузки игр:",
+            "Ошибка игр:",
             error
         );
 
 
-        gamesList.innerHTML = `
+        list.innerHTML = `
             <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
 
                 <p class="text-red-400">
@@ -1877,7 +1758,7 @@ async function createBooking(
         } else {
 
             alert(
-                "Вы успешно записались на игру!"
+                "Вы успешно записались!"
             );
         }
 
@@ -1888,13 +1769,12 @@ async function createBooking(
     } catch (error) {
 
         console.error(
-            "Ошибка записи:",
             error
         );
 
 
         alert(
-            "Не удалось записаться на игру."
+            "Не удалось записаться"
         );
     }
 }
@@ -1937,7 +1817,7 @@ async function cancelBooking(
 
 
         alert(
-            "Запись отменена."
+            "Запись отменена"
         );
 
 
@@ -1947,13 +1827,12 @@ async function cancelBooking(
     } catch (error) {
 
         console.error(
-            "Ошибка отмены записи:",
             error
         );
 
 
         alert(
-            "Не удалось отменить запись."
+            "Не удалось отменить запись"
         );
     }
 }
@@ -2003,6 +1882,12 @@ function updateNextGame(
     }
 
 
+    const date =
+        new Date(
+            game.start_at
+        );
+
+
     document.getElementById(
         "nextGameTitle"
     ).textContent =
@@ -2017,38 +1902,29 @@ function updateNextGame(
         "Игра";
 
 
-    if (game.start_at) {
-
-        const date =
-            new Date(
-                game.start_at
-            );
-
-
-        document.getElementById(
-            "nextGameDate"
-        ).textContent =
-            date.toLocaleDateString(
-                "ru-RU",
-                {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }
-            );
+    document.getElementById(
+        "nextGameDate"
+    ).textContent =
+        date.toLocaleDateString(
+            "ru-RU",
+            {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
+        );
 
 
-        document.getElementById(
-            "nextGameTime"
-        ).textContent =
-            date.toLocaleTimeString(
-                "ru-RU",
-                {
-                    hour: "2-digit",
-                    minute: "2-digit"
-                }
-            );
-    }
+    document.getElementById(
+        "nextGameTime"
+    ).textContent =
+        date.toLocaleTimeString(
+            "ru-RU",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
 
 
     document.getElementById(
@@ -2062,7 +1938,7 @@ function updateNextGame(
 
 
 /* =====================================================
-   АДМИНКА — ИГРЫ
+   АДМИН — СПИСОК ИГР
 ===================================================== */
 
 async function loadAdminGames() {
@@ -2086,7 +1962,7 @@ async function loadAdminGames() {
     list.innerHTML = `
         <div class="bg-zinc-900 rounded-3xl p-5 text-center">
             <p class="text-gray-500">
-                Загружаем игры...
+                Загрузка...
             </p>
         </div>
     `;
@@ -2117,7 +1993,7 @@ async function loadAdminGames() {
 
             throw new Error(
                 data.detail ||
-                "Ошибка загрузки"
+                "Не удалось загрузить игры"
             );
         }
 
@@ -2131,7 +2007,7 @@ async function loadAdminGames() {
                 <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
 
                     <p class="text-gray-500">
-                        Игр пока нет
+                        Пока нет игр
                     </p>
 
                 </div>
@@ -2147,24 +2023,9 @@ async function loadAdminGames() {
         data.forEach(
             function(game) {
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
-
-
-                let dateText =
-                    "Дата не указана";
-
-
-                if (game.start_at) {
-
-                    dateText =
-                        new Date(
+                const date =
+                    game.start_at
+                        ? new Date(
                             game.start_at
                         ).toLocaleString(
                             "ru-RU",
@@ -2175,31 +2036,30 @@ async function loadAdminGames() {
                                 hour: "2-digit",
                                 minute: "2-digit"
                             }
-                        );
-                }
+                        )
+                        : "Дата не указана";
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
 
 
                 card.innerHTML = `
 
-                    <div class="flex justify-between items-start gap-3">
+                    <p class="text-gray-500 text-sm">
+                        ${date}
+                    </p>
 
-                        <div>
 
-                            <p class="text-gray-500 text-sm">
-                                ${dateText}
-                            </p>
-
-                            <h3 class="text-lg font-semibold mt-1">
-                                ${game.name || "Игра"}
-                            </h3>
-
-                        </div>
-
-                        <span class="bg-zinc-800 rounded-xl px-3 py-1 text-xs">
-                            ${game.type || "—"}
-                        </span>
-
-                    </div>
+                    <h3 class="text-lg font-semibold mt-1">
+                        ${game.name || "Игра"}
+                    </h3>
 
 
                     <div class="grid grid-cols-2 gap-3 mt-4">
@@ -2207,7 +2067,7 @@ async function loadAdminGames() {
                         <div class="bg-zinc-800/60 rounded-2xl p-3">
 
                             <p class="text-gray-500 text-xs">
-                                Лимит
+                                Лимит игроков
                             </p>
 
                             <p class="font-semibold mt-1">
@@ -2220,11 +2080,11 @@ async function loadAdminGames() {
                         <div class="bg-zinc-800/60 rounded-2xl p-3">
 
                             <p class="text-gray-500 text-xs">
-                                Статус
+                                Тип
                             </p>
 
                             <p class="font-semibold mt-1">
-                                ${game.status || "—"}
+                                ${game.type || "—"}
                             </p>
 
                         </div>
@@ -2235,7 +2095,7 @@ async function loadAdminGames() {
                     <div class="grid grid-cols-2 gap-3 mt-4">
 
                         <button
-                            onclick="openAdminBookings(${game.id}, '${escapeAttribute(game.name || "Игра")}')"
+                            onclick="openAdminBookings(${game.id}, ${JSON.stringify(game.name || "Игра")})"
                             class="bg-white text-black rounded-2xl py-3 font-semibold"
                         >
                             Игроки
@@ -2264,13 +2124,13 @@ async function loadAdminGames() {
     } catch (error) {
 
         console.error(
-            "Ошибка админских игр:",
+            "Ошибка админки:",
             error
         );
 
 
         list.innerHTML = `
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+            <div class="bg-zinc-900 rounded-3xl p-5 text-center">
 
                 <p class="text-red-400">
                     ${error.message}
@@ -2283,7 +2143,7 @@ async function loadAdminGames() {
 
 
 /* =====================================================
-   СОЗДАНИЕ ИГРЫ
+   СОЗДАТЬ ИГРУ
 ===================================================== */
 
 async function createAdminGame() {
@@ -2304,6 +2164,20 @@ async function createAdminGame() {
         ).value.trim();
 
 
+    const startInput =
+        document.getElementById(
+            "adminGameStart"
+        ).value;
+
+
+    const maxPlayers =
+        Number(
+            document.getElementById(
+                "adminGameMaxPlayers"
+            ).value
+        );
+
+
     if (!name) {
 
         alert(
@@ -2314,12 +2188,6 @@ async function createAdminGame() {
     }
 
 
-    const startInput =
-        document.getElementById(
-            "adminGameStart"
-        ).value;
-
-
     if (!startInput) {
 
         alert(
@@ -2328,20 +2196,6 @@ async function createAdminGame() {
 
         return;
     }
-
-
-    const deadlineInput =
-        document.getElementById(
-            "adminGameDeadline"
-        ).value;
-
-
-    const maxPlayers =
-        Number(
-            document.getElementById(
-                "adminGameMaxPlayers"
-            ).value
-        );
 
 
     if (
@@ -2355,6 +2209,12 @@ async function createAdminGame() {
 
         return;
     }
+
+
+    const deadlineInput =
+        document.getElementById(
+            "adminGameDeadline"
+        ).value;
 
 
     const payload = {
@@ -2416,7 +2276,6 @@ async function createAdminGame() {
 
         max_players:
             maxPlayers
-
     };
 
 
@@ -2513,7 +2372,7 @@ async function createAdminGame() {
     } catch (error) {
 
         console.error(
-            "Ошибка создания игры:",
+            "Ошибка создания:",
             error
         );
 
@@ -2526,7 +2385,7 @@ async function createAdminGame() {
 
 
 /* =====================================================
-   УДАЛЕНИЕ ИГРЫ
+   УДАЛИТЬ ИГРУ
 ===================================================== */
 
 async function deleteAdminGame(
@@ -2543,13 +2402,11 @@ async function deleteAdminGame(
     }
 
 
-    const confirmed =
-        confirm(
+    if (
+        !confirm(
             "Удалить эту игру?"
-        );
-
-
-    if (!confirmed) {
+        )
+    ) {
         return;
     }
 
@@ -2649,7 +2506,7 @@ async function openAdminBookings(
     list.innerHTML = `
         <div class="bg-zinc-900 rounded-3xl p-5 text-center">
             <p class="text-gray-500">
-                Загружаем игроков...
+                Загрузка игроков...
             </p>
         </div>
     `;
@@ -2712,30 +2569,16 @@ async function openAdminBookings(
         data.forEach(
             function(player, index) {
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                const first =
-                    player.first_name || "";
-
-
-                const last =
-                    player.last_name || "";
-
-
                 const name =
-                    (first + " " + last).trim() ||
-                    "Игрок";
-
-
-                const username =
-                    player.username
-                        ? "@" +
-                          player.username
-                        : "";
+                    (
+                        player.first_name ||
+                        ""
+                    ) +
+                    " " +
+                    (
+                        player.last_name ||
+                        ""
+                    );
 
 
                 const status =
@@ -2775,25 +2618,31 @@ async function openAdminBookings(
                 }
 
 
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
                 card.className =
                     "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
 
 
                 card.innerHTML = `
 
-                    <div class="flex justify-between items-start gap-3">
+                    <div class="flex justify-between items-start">
 
                         <div>
 
-                            <p class="text-gray-400 font-semibold">
-                                ${index + 1}. ${name}
+                            <p class="font-semibold">
+                                ${index + 1}. ${name.trim() || "Игрок"}
                             </p>
 
                             ${
-                                username
+                                player.username
                                     ? `
                                         <p class="text-gray-500 text-sm mt-1">
-                                            ${username}
+                                            @${player.username}
                                         </p>
                                     `
                                     : ""
@@ -2802,17 +2651,9 @@ async function openAdminBookings(
                         </div>
 
 
-                        <div class="text-right">
-
-                            <p class="text-sm font-semibold">
-                                ${statusText}
-                            </p>
-
-                            <p class="text-gray-600 text-xs mt-1">
-                                ID: ${player.user_id}
-                            </p>
-
-                        </div>
+                        <p class="text-sm text-gray-400">
+                            ${statusText}
+                        </p>
 
                     </div>
 
@@ -2835,7 +2676,7 @@ async function openAdminBookings(
 
 
         list.innerHTML = `
-            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+            <div class="bg-zinc-900 rounded-3xl p-5 text-center">
 
                 <p class="text-red-400">
                     ${error.message}
@@ -2844,30 +2685,6 @@ async function openAdminBookings(
             </div>
         `;
     }
-}
-
-
-/* =====================================================
-   ЗАЩИТА HTML ОТ КАВЫЧЕК В НАЗВАНИИ
-===================================================== */
-
-function escapeAttribute(
-    value
-) {
-
-    return String(value)
-        .replace(
-            /\\/g,
-            "\\\\"
-        )
-        .replace(
-            /'/g,
-            "\\'"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        );
 }
 
 
@@ -2938,6 +2755,7 @@ function showScreen(
             "hidden"
         );
 
+
         return;
     }
 
@@ -2955,6 +2773,7 @@ function showScreen(
 
 
         loadGames();
+
 
         return;
     }
@@ -2974,6 +2793,7 @@ function showScreen(
 
         loadRating();
 
+
         return;
     }
 
@@ -2988,6 +2808,7 @@ function showScreen(
         ).classList.remove(
             "hidden"
         );
+
 
         return;
     }
@@ -3021,6 +2842,7 @@ function showScreen(
 
         loadAdminGames();
 
+
         return;
     }
 
@@ -3050,6 +2872,7 @@ function showScreen(
             "hidden"
         );
 
+
         return;
     }
 }
@@ -3066,11 +2889,7 @@ async function initApp() {
     );
 
 
-    const telegramReady =
-        initTelegram();
-
-
-    if (!telegramReady) {
+    if (!initTelegram()) {
         return;
     }
 
@@ -3097,6 +2916,7 @@ async function initApp() {
 initApp();
 
 </script>
+
 
 </body>
 </html>
