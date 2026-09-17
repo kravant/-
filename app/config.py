@@ -4,7 +4,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     database_url: str
     bot_token: str
-    admin_telegram_id: int
 
     model_config = SettingsConfigDict(
         env_file=".env",
