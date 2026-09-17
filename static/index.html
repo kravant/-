@@ -24,35 +24,36 @@
         }
 
         button {
-            transition: transform 0.15s ease, opacity 0.15s ease;
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
         }
 
         button:active {
             transform: scale(0.97);
             opacity: 0.8;
         }
+
+        input,
+        textarea,
+        select {
+            outline: none;
+        }
     </style>
 </head>
-
 
 <body class="text-white min-h-screen">
 
 
-<!-- =====================================================
-     ОСНОВНОЙ КОНТЕЙНЕР
-===================================================== -->
-
 <div class="max-w-md mx-auto px-5 pt-6 pb-28">
 
 
-    <!-- =================================================
+    <!-- =====================================================
          ГЛАВНАЯ
-    ================================================== -->
+    ====================================================== -->
 
     <div id="homeScreen">
 
-
-        <!-- HEADER -->
 
         <div class="flex justify-between items-center mb-8">
 
@@ -71,23 +72,12 @@
 
             </div>
 
-            <div class="flex items-center gap-3">
 
-                <div
-                    id="adminBadge"
-                    class="hidden bg-yellow-500/20 text-yellow-400 text-xs font-bold px-2.5 py-1 rounded-lg"
-                >
-                    ADMIN
-                </div>
-
-
-                <div
-                    id="avatar"
-                    class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl overflow-hidden"
-                >
-                    ♠
-                </div>
-
+            <div
+                id="avatar"
+                class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xl overflow-hidden"
+            >
+                ♠
             </div>
 
         </div>
@@ -253,7 +243,49 @@
         </section>
 
 
-        <!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
+        <!-- АДМИН -->
+
+        <section
+            id="adminHomeSection"
+            class="hidden mb-5"
+        >
+
+            <button
+                onclick="showScreen('admin')"
+                class="w-full bg-white text-black rounded-3xl p-5 text-left"
+            >
+
+                <div class="flex justify-between items-center">
+
+                    <div>
+
+                        <p class="text-xs uppercase tracking-wider text-gray-500">
+                            Администрирование
+                        </p>
+
+                        <p class="text-xl font-bold mt-1">
+                            Админка
+                        </p>
+
+                        <p class="text-sm text-gray-600 mt-1">
+                            Управление играми и игроками
+                        </p>
+
+                    </div>
+
+
+                    <div class="text-2xl">
+                        ⚙️
+                    </div>
+
+                </div>
+
+            </button>
+
+        </section>
+
+
+        <!-- БЫСТРЫЙ ДОСТУП -->
 
         <section>
 
@@ -311,9 +343,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          ИГРЫ
-    ================================================== -->
+    ====================================================== -->
 
     <div
         id="gamesScreen"
@@ -345,9 +377,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          РЕЙТИНГ
-    ================================================== -->
+    ====================================================== -->
 
     <div
         id="ratingScreen"
@@ -379,9 +411,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          ПРОФИЛЬ
-    ================================================== -->
+    ====================================================== -->
 
     <div
         id="profileScreen"
@@ -472,12 +504,258 @@
     </div>
 
 
+    <!-- =====================================================
+         АДМИНКА
+    ====================================================== -->
+
+    <div
+        id="adminScreen"
+        class="hidden"
+    >
+
+
+        <div class="flex items-center mb-8">
+
+            <button
+                onclick="showScreen('home')"
+                class="text-gray-400 mr-4 text-2xl"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <p class="text-gray-500 text-xs uppercase tracking-wider">
+                    Управление
+                </p>
+
+                <h1 class="text-2xl font-bold">
+                    Админка
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <!-- СОЗДАНИЕ ИГРЫ -->
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 mb-5">
+
+            <h2 class="text-lg font-semibold mb-4">
+                Создать игру
+            </h2>
+
+
+            <div class="space-y-3">
+
+
+                <input
+                    id="adminGameName"
+                    type="text"
+                    placeholder="Название игры"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                >
+
+
+                <textarea
+                    id="adminGameDescription"
+                    placeholder="Описание"
+                    rows="3"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500 resize-none"
+                ></textarea>
+
+
+                <select
+                    id="adminGameType"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white"
+                >
+
+                    <option value="tournament">
+                        Турнир
+                    </option>
+
+                    <option value="cash_game">
+                        Cash Game
+                    </option>
+
+                </select>
+
+
+                <input
+                    id="adminGameFormat"
+                    type="text"
+                    placeholder="Формат, например NLH"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                >
+
+
+                <input
+                    id="adminGameLocation"
+                    type="text"
+                    placeholder="Место проведения"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                >
+
+
+                <input
+                    id="adminGameImage"
+                    type="url"
+                    placeholder="Ссылка на изображение"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                >
+
+
+                <textarea
+                    id="adminGameRules"
+                    placeholder="Правила"
+                    rows="3"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500 resize-none"
+                ></textarea>
+
+
+                <textarea
+                    id="adminGamePrize"
+                    placeholder="Информация о призах"
+                    rows="2"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500 resize-none"
+                ></textarea>
+
+
+                <div>
+
+                    <p class="text-gray-500 text-xs mb-2">
+                        Дата и время игры
+                    </p>
+
+                    <input
+                        id="adminGameStart"
+                        type="datetime-local"
+                        class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <p class="text-gray-500 text-xs mb-2">
+                        Дедлайн регистрации
+                    </p>
+
+                    <input
+                        id="adminGameDeadline"
+                        type="datetime-local"
+                        class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white"
+                    >
+
+                </div>
+
+
+                <input
+                    id="adminGameMaxPlayers"
+                    type="number"
+                    min="1"
+                    value="9"
+                    placeholder="Максимум игроков"
+                    class="w-full bg-zinc-800 rounded-2xl px-4 py-3.5 text-white placeholder-gray-500"
+                >
+
+
+                <button
+                    onclick="createAdminGame()"
+                    class="w-full bg-white text-black rounded-2xl py-3.5 font-semibold"
+                >
+                    Создать игру
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- СПИСОК ИГР -->
+
+        <div>
+
+            <div class="flex justify-between items-center mb-3">
+
+                <h2 class="text-lg font-semibold">
+                    Игры
+                </h2>
+
+                <button
+                    onclick="loadAdminGames()"
+                    class="text-gray-500 text-sm"
+                >
+                    Обновить
+                </button>
+
+            </div>
+
+
+            <div
+                id="adminGamesList"
+                class="space-y-3"
+            >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         АДМИН — ИГРОКИ
+    ====================================================== -->
+
+    <div
+        id="adminBookingsScreen"
+        class="hidden"
+    >
+
+        <div class="flex items-center mb-8">
+
+            <button
+                onclick="showScreen('admin')"
+                class="text-gray-400 mr-4 text-2xl"
+            >
+                ←
+            </button>
+
+            <div>
+
+                <p class="text-gray-500 text-xs uppercase tracking-wider">
+                    Игра
+                </p>
+
+                <h1
+                    id="adminBookingsTitle"
+                    class="text-2xl font-bold"
+                >
+                    Игроки
+                </h1>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="adminBookingsList"
+            class="space-y-3"
+        >
+        </div>
+
+    </div>
+
+
 </div>
 
 
 <!-- =====================================================
      НИЖНЯЯ НАВИГАЦИЯ
-===================================================== -->
+====================================================== -->
 
 <div
     id="navigation"
@@ -551,6 +829,10 @@ let currentUserId = null;
 
 let currentTelegramUser = null;
 
+let telegramInitData = "";
+
+let isAdmin = false;
+
 
 /* =====================================================
    TELEGRAM
@@ -578,6 +860,10 @@ function initTelegram() {
     tg.expand();
 
 
+    telegramInitData =
+        tg.initData || "";
+
+
     return true;
 }
 
@@ -593,48 +879,46 @@ async function authorizeUser() {
     }
 
 
+    if (!telegramInitData) {
+
+        console.error(
+            "Telegram initData отсутствует"
+        );
+
+        return false;
+    }
+
+
     try {
 
-        const initData = tg.initData;
+        const response =
+            await fetch(
+                window.location.origin +
+                "/auth/telegram",
+                {
+                    method: "POST",
 
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-        if (!initData) {
-
-            console.error(
-                "Telegram initData отсутствует"
+                    body: JSON.stringify({
+                        init_data:
+                            telegramInitData
+                    })
+                }
             );
-
-            return false;
-        }
-
-
-        const response = await fetch(
-            window.location.origin +
-            "/auth/telegram",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-                    init_data: initData
-                })
-            }
-        );
 
 
         if (!response.ok) {
 
-            const errorText =
+            const error =
                 await response.text();
 
             console.error(
                 "Ошибка авторизации:",
-                response.status,
-                errorText
+                error
             );
 
             return false;
@@ -650,10 +934,17 @@ async function authorizeUser() {
 
 
         currentTelegramUser =
-            tg.initDataUnsafe?.user || null;
+            tg.initDataUnsafe?.user ||
+            null;
 
 
         updateUserInterface();
+
+
+        /*
+         * Проверяем админку через backend.
+         */
+        await checkAdmin();
 
 
         return true;
@@ -668,6 +959,121 @@ async function authorizeUser() {
 
         return false;
     }
+}
+
+
+/* =====================================================
+   ПРОВЕРКА АДМИНА
+===================================================== */
+
+async function checkAdmin() {
+
+    if (!telegramInitData) {
+
+        isAdmin = false;
+
+        return false;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/admin/check",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "X-Telegram-Init-Data":
+                            telegramInitData
+                    },
+
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            isAdmin = false;
+
+            document
+                .getElementById(
+                    "adminHomeSection"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+            return false;
+        }
+
+
+        const data =
+            await response.json();
+
+
+        isAdmin =
+            data.is_admin === true;
+
+
+        if (isAdmin) {
+
+            document
+                .getElementById(
+                    "adminHomeSection"
+                )
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+        } else {
+
+            document
+                .getElementById(
+                    "adminHomeSection"
+                )
+                .classList
+                .add(
+                    "hidden"
+                );
+        }
+
+
+        return isAdmin;
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка проверки админа:",
+            error
+        );
+
+
+        isAdmin = false;
+
+        return false;
+    }
+}
+
+
+/* =====================================================
+   АДМИНСКИЙ ЗАГОЛОВОК
+===================================================== */
+
+function adminHeaders() {
+
+    return {
+        "Content-Type":
+            "application/json",
+
+        "X-Telegram-Init-Data":
+            telegramInitData
+    };
 }
 
 
@@ -705,7 +1111,9 @@ function updateUserInterface() {
         );
 
 
-    if (currentTelegramUser.photo_url) {
+    if (
+        currentTelegramUser.photo_url
+    ) {
 
         const image = `
             <img
@@ -716,19 +1124,24 @@ function updateUserInterface() {
         `;
 
 
-        avatar.innerHTML = image;
+        avatar.innerHTML =
+            image;
 
-        profileAvatar.innerHTML = image;
+
+        profileAvatar.innerHTML =
+            image;
 
     }
 
 
     const first =
-        currentTelegramUser.first_name || "";
+        currentTelegramUser.first_name ||
+        "";
 
 
     const last =
-        currentTelegramUser.last_name || "";
+        currentTelegramUser.last_name ||
+        "";
 
 
     const fullName =
@@ -745,81 +1158,9 @@ function updateUserInterface() {
         "profileUsername"
     ).textContent =
         currentTelegramUser.username
-            ? "@" + currentTelegramUser.username
+            ? "@" +
+              currentTelegramUser.username
             : "Telegram";
-}
-
-
-/* =====================================================
-   ПРОФИЛЬ (is_admin)
-===================================================== */
-
-async function loadMe() {
-
-    if (!tg || !tg.initData) {
-        console.warn("loadMe: initData отсутствует");
-        return null;
-    }
-
-
-    try {
-
-        const response = await fetch(
-            window.location.origin + "/users/me",
-            {
-                method: "GET",
-                headers: {
-                    "X-Init-Data": tg.initData
-                },
-                cache: "no-store"
-            }
-        );
-
-
-        if (!response.ok) {
-
-            console.warn(
-                "loadMe: не авторизован (",
-                response.status,
-                ")"
-            );
-
-            return null;
-        }
-
-
-        const me = await response.json();
-
-        console.log("Мой профиль:", me);
-
-
-        if (me.is_admin) {
-
-            const badge =
-                document.getElementById(
-                    "adminBadge"
-                );
-
-            if (badge) {
-                badge.classList.remove("hidden");
-            }
-
-            console.log("🛠 Ты админ");
-        }
-
-
-        return me;
-
-
-    } catch (error) {
-
-        console.error(
-            "loadMe: ошибка запроса",
-            error
-        );
-
-        return null;
-    }
 }
 
 
@@ -878,7 +1219,8 @@ async function loadMyRating() {
         document.getElementById(
             "myGames"
         ).textContent =
-            "Сыграно игр: " + games;
+            "Сыграно игр: " +
+            games;
 
 
         document.getElementById(
@@ -899,7 +1241,6 @@ async function loadMyRating() {
             "Ошибка загрузки рейтинга:",
             error
         );
-
     }
 }
 
@@ -951,18 +1292,13 @@ async function loadRating() {
             await response.json();
 
 
-        if (!Array.isArray(data)) {
-
-            throw new Error(
-                "Неверный формат рейтинга"
-            );
-        }
-
-
-        if (data.length === 0) {
+        if (
+            !Array.isArray(data) ||
+            data.length === 0
+        ) {
 
             leaderboard.innerHTML = `
-                <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
 
                     <p class="text-gray-500">
                         Пока нет игроков
@@ -1046,8 +1382,9 @@ async function loadRating() {
                 `;
 
 
-                leaderboard.appendChild(card);
-
+                leaderboard.appendChild(
+                    card
+                );
             }
         );
 
@@ -1142,95 +1479,105 @@ async function loadGames() {
             `;
 
 
-            updateNextGame(null);
+            updateNextGame(
+                null
+            );
+
 
             return;
         }
 
 
-        gamesList.innerHTML = "";
-
-
-        /*
-         * Сначала показываем ближайшие игры.
-         */
         games.sort(
             function(a, b) {
 
-                return new Date(a.start_at) -
-                    new Date(b.start_at);
+                return new Date(
+                    a.start_at
+                ) -
+                new Date(
+                    b.start_at
+                );
 
             }
         );
 
 
-        /*
-         * Загружаем каждую игру.
-         */
+        gamesList.innerHTML = "";
+
+
         for (
             const game of games
         ) {
 
-            const bookingsResponse =
-                await fetch(
-                    window.location.origin +
-                    "/bookings/game/" +
-                    game.id,
-                    {
-                        method: "GET",
-                        cache: "no-store"
-                    }
-                );
-
-
             let bookings = [];
 
 
-            if (
-                bookingsResponse.ok
-            ) {
+            try {
 
-                bookings =
-                    await bookingsResponse.json();
+                const bookingsResponse =
+                    await fetch(
+                        window.location.origin +
+                        "/bookings/game/" +
+                        game.id,
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
 
+
+                if (
+                    bookingsResponse.ok
+                ) {
+
+                    bookings =
+                        await bookingsResponse.json();
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Ошибка загрузки записей:",
+                    error
+                );
             }
 
 
-            /*
-             * Количество подтверждённых игроков.
-             */
             const confirmedPlayers =
                 bookings.filter(
                     function(booking) {
 
-                        return booking.status ===
+                        return String(
+                            booking.status
+                        ).toLowerCase() ===
                             "confirmed";
 
                     }
                 ).length;
 
 
-            /*
-             * Ищем запись текущего пользователя.
-             */
             const currentBooking =
                 bookings.find(
                     function(booking) {
+
+                        const status =
+                            String(
+                                booking.status
+                            ).toLowerCase();
+
 
                         return (
                             booking.user_id ===
                             currentUserId
                         ) &&
-                        booking.status !==
+                        status !==
                             "cancelled";
 
                     }
                 );
 
 
-            /*
-             * Дата.
-             */
             let dateText =
                 "Дата не указана";
 
@@ -1269,29 +1616,20 @@ async function loadGames() {
             }
 
 
-            /*
-             * Карточка.
-             */
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
-
-
-            /*
-             * Кнопка.
-             */
-            let buttonHtml = "";
+            let buttonHtml =
+                "";
 
 
             if (currentBooking) {
 
+                const status =
+                    String(
+                        currentBooking.status
+                    ).toLowerCase();
+
+
                 if (
-                    currentBooking.status ===
+                    status ===
                     "waiting"
                 ) {
 
@@ -1314,7 +1652,6 @@ async function loadGames() {
                             Вы записаны · Отменить
                         </button>
                     `;
-
                 }
 
             } else if (
@@ -1344,9 +1681,16 @@ async function loadGames() {
             }
 
 
-            /*
-             * HTML карточки.
-             */
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
+
+
             card.innerHTML = `
 
                 <div class="flex justify-between items-start">
@@ -1369,6 +1713,17 @@ async function loadGames() {
                     </div>
 
                 </div>
+
+
+                ${
+                    game.description
+                        ? `
+                            <p class="text-gray-400 text-sm mt-3">
+                                ${game.description}
+                            </p>
+                        `
+                        : ""
+                }
 
 
                 <div class="grid grid-cols-2 gap-3 mt-5 mb-4">
@@ -1402,6 +1757,17 @@ async function loadGames() {
                 </div>
 
 
+                ${
+                    game.location
+                        ? `
+                            <p class="text-gray-500 text-sm mb-4">
+                                📍 ${game.location}
+                            </p>
+                        `
+                        : ""
+                }
+
+
                 ${buttonHtml}
 
             `;
@@ -1413,9 +1779,6 @@ async function loadGames() {
         }
 
 
-        /*
-         * Первая игра — ближайшая.
-         */
         updateNextGame(
             games[0]
         );
@@ -1436,10 +1799,6 @@ async function loadGames() {
                     Не удалось загрузить игры
                 </p>
 
-                <p class="text-gray-600 text-sm mt-2">
-                    Ошибка соединения с сервером
-                </p>
-
             </div>
         `;
     }
@@ -1447,7 +1806,7 @@ async function loadGames() {
 
 
 /* =====================================================
-   ЗАПИСЬ НА ИГРУ
+   ЗАПИСЬ
 ===================================================== */
 
 async function createBooking(
@@ -1505,7 +1864,9 @@ async function createBooking(
 
 
         if (
-            data.status ===
+            String(
+                data.status
+            ).toLowerCase() ===
             "waiting"
         ) {
 
@@ -1540,7 +1901,7 @@ async function createBooking(
 
 
 /* =====================================================
-   ОТМЕНА ЗАПИСИ
+   ОТМЕНА
 ===================================================== */
 
 async function cancelBooking(
@@ -1694,8 +2055,819 @@ function updateNextGame(
         "nextGamePlayers"
     ).textContent =
         game.max_players
-            ? "до " + game.max_players
+            ? "до " +
+              game.max_players
             : "—";
+}
+
+
+/* =====================================================
+   АДМИНКА — ИГРЫ
+===================================================== */
+
+async function loadAdminGames() {
+
+    if (!isAdmin) {
+
+        alert(
+            "Доступ запрещён"
+        );
+
+        return;
+    }
+
+
+    const list =
+        document.getElementById(
+            "adminGamesList"
+        );
+
+
+    list.innerHTML = `
+        <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+            <p class="text-gray-500">
+                Загружаем игры...
+            </p>
+        </div>
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/admin/games",
+                {
+                    method: "GET",
+
+                    headers:
+                        adminHeaders(),
+
+                    cache: "no-store"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail ||
+                "Ошибка загрузки"
+            );
+        }
+
+
+        if (
+            !Array.isArray(data) ||
+            data.length === 0
+        ) {
+
+            list.innerHTML = `
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+
+                    <p class="text-gray-500">
+                        Игр пока нет
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        list.innerHTML = "";
+
+
+        data.forEach(
+            function(game) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
+
+
+                let dateText =
+                    "Дата не указана";
+
+
+                if (game.start_at) {
+
+                    dateText =
+                        new Date(
+                            game.start_at
+                        ).toLocaleString(
+                            "ru-RU",
+                            {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit"
+                            }
+                        );
+                }
+
+
+                card.innerHTML = `
+
+                    <div class="flex justify-between items-start gap-3">
+
+                        <div>
+
+                            <p class="text-gray-500 text-sm">
+                                ${dateText}
+                            </p>
+
+                            <h3 class="text-lg font-semibold mt-1">
+                                ${game.name || "Игра"}
+                            </h3>
+
+                        </div>
+
+                        <span class="bg-zinc-800 rounded-xl px-3 py-1 text-xs">
+                            ${game.type || "—"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+
+                        <div class="bg-zinc-800/60 rounded-2xl p-3">
+
+                            <p class="text-gray-500 text-xs">
+                                Лимит
+                            </p>
+
+                            <p class="font-semibold mt-1">
+                                ${game.max_players || "—"}
+                            </p>
+
+                        </div>
+
+
+                        <div class="bg-zinc-800/60 rounded-2xl p-3">
+
+                            <p class="text-gray-500 text-xs">
+                                Статус
+                            </p>
+
+                            <p class="font-semibold mt-1">
+                                ${game.status || "—"}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+
+                        <button
+                            onclick="openAdminBookings(${game.id}, '${escapeAttribute(game.name || "Игра")}')"
+                            class="bg-white text-black rounded-2xl py-3 font-semibold"
+                        >
+                            Игроки
+                        </button>
+
+
+                        <button
+                            onclick="deleteAdminGame(${game.id})"
+                            class="bg-zinc-800 text-red-400 rounded-2xl py-3 font-semibold"
+                        >
+                            Удалить
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(
+                    card
+                );
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка админских игр:",
+            error
+        );
+
+
+        list.innerHTML = `
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+
+                <p class="text-red-400">
+                    ${error.message}
+                </p>
+
+            </div>
+        `;
+    }
+}
+
+
+/* =====================================================
+   СОЗДАНИЕ ИГРЫ
+===================================================== */
+
+async function createAdminGame() {
+
+    if (!isAdmin) {
+
+        alert(
+            "Доступ запрещён"
+        );
+
+        return;
+    }
+
+
+    const name =
+        document.getElementById(
+            "adminGameName"
+        ).value.trim();
+
+
+    if (!name) {
+
+        alert(
+            "Введите название игры"
+        );
+
+        return;
+    }
+
+
+    const startInput =
+        document.getElementById(
+            "adminGameStart"
+        ).value;
+
+
+    if (!startInput) {
+
+        alert(
+            "Укажите дату и время игры"
+        );
+
+        return;
+    }
+
+
+    const deadlineInput =
+        document.getElementById(
+            "adminGameDeadline"
+        ).value;
+
+
+    const maxPlayers =
+        Number(
+            document.getElementById(
+                "adminGameMaxPlayers"
+            ).value
+        );
+
+
+    if (
+        !maxPlayers ||
+        maxPlayers < 1
+    ) {
+
+        alert(
+            "Укажите количество игроков"
+        );
+
+        return;
+    }
+
+
+    const payload = {
+
+        name: name,
+
+        description:
+            document.getElementById(
+                "adminGameDescription"
+            ).value.trim() ||
+            null,
+
+        type:
+            document.getElementById(
+                "adminGameType"
+            ).value,
+
+        format:
+            document.getElementById(
+                "adminGameFormat"
+            ).value.trim() ||
+            null,
+
+        location:
+            document.getElementById(
+                "adminGameLocation"
+            ).value.trim() ||
+            null,
+
+        image_url:
+            document.getElementById(
+                "adminGameImage"
+            ).value.trim() ||
+            null,
+
+        rules:
+            document.getElementById(
+                "adminGameRules"
+            ).value.trim() ||
+            null,
+
+        prize_info:
+            document.getElementById(
+                "adminGamePrize"
+            ).value.trim() ||
+            null,
+
+        start_at:
+            new Date(
+                startInput
+            ).toISOString(),
+
+        registration_deadline:
+            deadlineInput
+                ? new Date(
+                    deadlineInput
+                ).toISOString()
+                : null,
+
+        max_players:
+            maxPlayers
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/admin/games",
+                {
+                    method: "POST",
+
+                    headers:
+                        adminHeaders(),
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.detail ||
+                "Не удалось создать игру"
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Игра создана"
+        );
+
+
+        document.getElementById(
+            "adminGameName"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameDescription"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameFormat"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameLocation"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameImage"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameRules"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGamePrize"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameStart"
+        ).value = "";
+
+
+        document.getElementById(
+            "adminGameDeadline"
+        ).value = "";
+
+
+        await loadAdminGames();
+
+        await loadGames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка создания игры:",
+            error
+        );
+
+
+        alert(
+            "Не удалось создать игру"
+        );
+    }
+}
+
+
+/* =====================================================
+   УДАЛЕНИЕ ИГРЫ
+===================================================== */
+
+async function deleteAdminGame(
+    gameId
+) {
+
+    if (!isAdmin) {
+
+        alert(
+            "Доступ запрещён"
+        );
+
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Удалить эту игру?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/admin/games/" +
+                gameId,
+                {
+                    method: "DELETE",
+
+                    headers:
+                        adminHeaders()
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.detail ||
+                "Не удалось удалить игру"
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Игра удалена"
+        );
+
+
+        await loadAdminGames();
+
+        await loadGames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка удаления:",
+            error
+        );
+
+
+        alert(
+            "Не удалось удалить игру"
+        );
+    }
+}
+
+
+/* =====================================================
+   АДМИН — ИГРОКИ
+===================================================== */
+
+async function openAdminBookings(
+    gameId,
+    gameName
+) {
+
+    if (!isAdmin) {
+
+        alert(
+            "Доступ запрещён"
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "adminBookingsTitle"
+    ).textContent =
+        gameName;
+
+
+    showScreen(
+        "adminBookings"
+    );
+
+
+    const list =
+        document.getElementById(
+            "adminBookingsList"
+        );
+
+
+    list.innerHTML = `
+        <div class="bg-zinc-900 rounded-3xl p-5 text-center">
+            <p class="text-gray-500">
+                Загружаем игроков...
+            </p>
+        </div>
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                window.location.origin +
+                "/admin/games/" +
+                gameId +
+                "/bookings",
+                {
+                    method: "GET",
+
+                    headers:
+                        adminHeaders(),
+
+                    cache: "no-store"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail ||
+                "Не удалось загрузить игроков"
+            );
+        }
+
+
+        if (
+            !Array.isArray(data) ||
+            data.length === 0
+        ) {
+
+            list.innerHTML = `
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+
+                    <p class="text-gray-500">
+                        На игру пока никто не записался
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        list.innerHTML = "";
+
+
+        data.forEach(
+            function(player, index) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                const first =
+                    player.first_name || "";
+
+
+                const last =
+                    player.last_name || "";
+
+
+                const name =
+                    (first + " " + last).trim() ||
+                    "Игрок";
+
+
+                const username =
+                    player.username
+                        ? "@" +
+                          player.username
+                        : "";
+
+
+                const status =
+                    String(
+                        player.status ||
+                        ""
+                    ).toLowerCase();
+
+
+                let statusText =
+                    "—";
+
+
+                if (
+                    status ===
+                    "confirmed"
+                ) {
+
+                    statusText =
+                        "Подтверждён";
+
+                } else if (
+                    status ===
+                    "waiting"
+                ) {
+
+                    statusText =
+                        "Лист ожидания";
+
+                } else if (
+                    status ===
+                    "cancelled"
+                ) {
+
+                    statusText =
+                        "Отменена";
+                }
+
+
+                card.className =
+                    "bg-zinc-900 border border-zinc-800 rounded-3xl p-5";
+
+
+                card.innerHTML = `
+
+                    <div class="flex justify-between items-start gap-3">
+
+                        <div>
+
+                            <p class="text-gray-400 font-semibold">
+                                ${index + 1}. ${name}
+                            </p>
+
+                            ${
+                                username
+                                    ? `
+                                        <p class="text-gray-500 text-sm mt-1">
+                                            ${username}
+                                        </p>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+
+                        <div class="text-right">
+
+                            <p class="text-sm font-semibold">
+                                ${statusText}
+                            </p>
+
+                            <p class="text-gray-600 text-xs mt-1">
+                                ID: ${player.user_id}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(
+                    card
+                );
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Ошибка игроков:",
+            error
+        );
+
+
+        list.innerHTML = `
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-5 text-center">
+
+                <p class="text-red-400">
+                    ${error.message}
+                </p>
+
+            </div>
+        `;
+    }
+}
+
+
+/* =====================================================
+   ЗАЩИТА HTML ОТ КАВЫЧЕК В НАЗВАНИИ
+===================================================== */
+
+function escapeAttribute(
+    value
+) {
+
+    return String(value)
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        );
 }
 
 
@@ -1707,22 +2879,44 @@ function hideAllScreens() {
 
     document.getElementById(
         "homeScreen"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 
     document.getElementById(
         "gamesScreen"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 
     document.getElementById(
         "ratingScreen"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 
     document.getElementById(
         "profileScreen"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "adminScreen"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "adminBookingsScreen"
+    ).classList.add(
+        "hidden"
+    );
 }
 
 
@@ -1734,24 +2928,31 @@ function showScreen(
 
 
     if (
-        screen === "home"
+        screen ===
+        "home"
     ) {
 
         document.getElementById(
             "homeScreen"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
 
         return;
     }
 
 
     if (
-        screen === "games"
+        screen ===
+        "games"
     ) {
 
         document.getElementById(
             "gamesScreen"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
+
 
         loadGames();
 
@@ -1760,12 +2961,16 @@ function showScreen(
 
 
     if (
-        screen === "rating"
+        screen ===
+        "rating"
     ) {
 
         document.getElementById(
             "ratingScreen"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
+
 
         loadRating();
 
@@ -1774,12 +2979,76 @@ function showScreen(
 
 
     if (
-        screen === "profile"
+        screen ===
+        "profile"
     ) {
 
         document.getElementById(
             "profileScreen"
-        ).classList.remove("hidden");
+        ).classList.remove(
+            "hidden"
+        );
+
+        return;
+    }
+
+
+    if (
+        screen ===
+        "admin"
+    ) {
+
+        if (!isAdmin) {
+
+            alert(
+                "Доступ запрещён"
+            );
+
+            showScreen(
+                "home"
+            );
+
+            return;
+        }
+
+
+        document.getElementById(
+            "adminScreen"
+        ).classList.remove(
+            "hidden"
+        );
+
+
+        loadAdminGames();
+
+        return;
+    }
+
+
+    if (
+        screen ===
+        "adminBookings"
+    ) {
+
+        if (!isAdmin) {
+
+            alert(
+                "Доступ запрещён"
+            );
+
+            showScreen(
+                "home"
+            );
+
+            return;
+        }
+
+
+        document.getElementById(
+            "adminBookingsScreen"
+        ).classList.remove(
+            "hidden"
+        );
 
         return;
     }
@@ -1787,7 +3056,7 @@ function showScreen(
 
 
 /* =====================================================
-   ЗАПУСК ПРИЛОЖЕНИЯ
+   ЗАПУСК
 ===================================================== */
 
 async function initApp() {
@@ -1811,8 +3080,6 @@ async function initApp() {
 
 
     if (authorized) {
-
-        await loadMe();
 
         await loadMyRating();
 
